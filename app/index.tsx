@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Pressable, Text, View } from "react-native";
 import { useNotes } from "./context/NotesContext";
+import NotesList from "./components/NotesList";
 
 export default function Index() {
   const { notes, upsertNote } = useNotes();
@@ -25,12 +26,15 @@ export default function Index() {
     >
       <Text>Edit app/index.tsx to edit this screen.</Text>
       <Text>Notes Count: {notes.length}</Text>
-      <View>
-        {notes.map((note) => (
-          <Text key={note.id}>
-            {note.id} - {note.title}
-          </Text>
-        ))}
+      <View
+        style={{
+          width: "100%",
+          padding: 20,
+          height: 300,
+          backgroundColor: "#efefef",
+        }}
+      >
+        <NotesList />
       </View>
       <Pressable
         onPress={() => {
