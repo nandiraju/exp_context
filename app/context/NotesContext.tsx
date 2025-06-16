@@ -79,7 +79,7 @@ export const NoteProvider = ({ children }: { children: React.ReactNode }) => {
   const deleteNote = (id: string) => {
     console.log("Deleting note with id:", id);
     const updated = notes.filter((note) => note.id !== id);
-    console.log("Notes after deletion:", updated);
+    //console.log("Notes after deletion:", updated);
     setNotes(updated);
     saveNotes(updated);
   };

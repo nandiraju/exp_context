@@ -2,9 +2,15 @@ import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useNotes } from "../context/NotesContext";
 import { Alert } from "react-native";
+import { useAtom } from "jotai";
+import { counterAtom } from "../stores/Counter";
+import { useAtomValue } from "jotai";
 
 const NotesList = () => {
   const { notes, deleteNote } = useNotes();
+
+  const counter = useAtomValue(counterAtom);
+
   return (
     <View
       style={{
@@ -32,6 +38,7 @@ const NotesList = () => {
             <Pressable
               onPress={() => {
                 console.log("Delete pressed for", item.id);
+                console.log("Counter from Note list ...:", counter);
                 Alert.alert(
                   "Delete Note",
                   "Are you sure you want to delete this note?",
