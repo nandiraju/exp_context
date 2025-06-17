@@ -3,8 +3,7 @@ import {
   Text,
   KeyboardAvoidingView,
   Platform,
-  TouchableOpacity,
-  Pressable,
+  Image,
 } from "react-native";
 import React, { useState } from "react";
 import IconInput from "../components/IconInput";
@@ -38,6 +37,17 @@ const SignInScreen = () => {
       className="flex-1"
     >
       <View className="flex-1 justify-center items-center bg-snow gap-2 ">
+        <Image
+          source={{
+            uri: "https://images.pexels.com/photos/5870534/pexels-photo-5870534.jpeg", // Example remote image
+          }}
+          className="rounded-full mb-5 shadow-2xl"
+          resizeMode="cover"
+          style={{
+            width: 100,
+            height: 100,
+          }}
+        />
         <Text className="mb-5  font-bold text-xl">Sign In</Text>
 
         <IconInput
