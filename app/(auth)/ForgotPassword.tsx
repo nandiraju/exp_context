@@ -1,4 +1,10 @@
-import { View, Text, KeyboardAvoidingView, Platform } from "react-native";
+import {
+  View,
+  Text,
+  KeyboardAvoidingView,
+  Platform,
+  Alert,
+} from "react-native";
 import React, { useState } from "react";
 import IconInput from "../components/IconInput";
 import { auth } from "../../FirebaseConfig";
