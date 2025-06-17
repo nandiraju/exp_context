@@ -28,8 +28,8 @@ const SignUpScreen = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       className="flex-1"
     >
-      <View className="flex-1 justify-center items-center bg-snow gap-2">
-        <Text>Signup</Text>
+      <View className="flex-1 justify-center items-center bg-snow gap-2 ">
+        <Text className="mb-5 font-bold text-xl">Sign up</Text>
 
         <IconInput
           placeholder="Email"
@@ -58,8 +58,8 @@ const SignUpScreen = () => {
           style={{ width: "80%", height: 50 }}
         />
 
-        <Button title="Signup" onPress={signUp} />
-        <LinkText route="/SignIn" text="Already have account? Signin here" />
+        <Button title="Sign Up" onPress={signUp} />
+        <LinkText route="/SignIn" text="Already have account? sign in here" />
       </View>
     </KeyboardAvoidingView>
   );

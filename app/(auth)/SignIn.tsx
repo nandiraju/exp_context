@@ -37,8 +37,8 @@ const SignInScreen = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       className="flex-1"
     >
-      <View className="flex-1 justify-center items-center bg-snow gap-2">
-        <Text>SignIn</Text>
+      <View className="flex-1 justify-center items-center bg-snow gap-2 ">
+        <Text className="mb-5  font-bold text-xl">Sign In</Text>
 
         <IconInput
           placeholder="Email"
@@ -59,7 +59,12 @@ const SignInScreen = () => {
         />
 
         <Button title="Sign In" onPress={signIn} />
-        <LinkText route="/SignUp" text="Dont have an account? Signup here" />
+        <LinkText route="/SignUp" text="Dont have an account? sign up here" />
+        <LinkText
+          route="/ForgotPassword"
+          text="Forgot password? Click here to reset it"
+          className="text-red-500 text-md mt-4 text-center font-bold"
+        />
       </View>
     </KeyboardAvoidingView>
   );

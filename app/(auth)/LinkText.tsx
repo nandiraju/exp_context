@@ -16,7 +16,7 @@ export const LinkText = ({
   const router = useRouter();
 
   return (
-    <TouchableOpacity onPress={() => router.push(route)}>
+    <TouchableOpacity onPress={() => router.push(route as any)}>
       <Text className={className}>{text}</Text>
     </TouchableOpacity>
   );
