@@ -37,6 +37,7 @@ const IconInput: React.FC<IconInputProps> = ({
       <TextInput
         style={[styles.input, inputStyle]}
         placeholderTextColor="#999"
+        autoCapitalize="none"
         {...textInputProps}
       />
     </View>

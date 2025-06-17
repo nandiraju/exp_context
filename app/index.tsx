@@ -1,11 +1,11 @@
 import React from "react";
-import { Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import LoginScreen from "./sandbox/LoginScreen";
+import SignInScreen from "./(auth)/SignIn";
+
 export default function Index() {
   return (
     <>
-      <LoginScreen />
+      <SignInScreen />
       <StatusBar style="auto" />
     </>
   );
