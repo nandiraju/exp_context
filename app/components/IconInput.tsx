@@ -21,7 +21,7 @@ interface IconInputProps extends TextInputProps {
 const IconInput: React.FC<IconInputProps> = ({
   iconName,
   iconSize = 24,
-  iconColor = "#999",
+  iconColor = "dodgerblue",
   containerStyle,
   inputStyle,
   ...textInputProps
