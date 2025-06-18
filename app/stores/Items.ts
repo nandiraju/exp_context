@@ -1,45 +1,42 @@
-import { atomWithStorage } from "jotai/utils";
-import { nanoid } from "nanoid";
-import { useAtom } from "jotai";
+// storage.ts
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { atom } from "jotai";
+import { createJSONStorage, atomWithStorage } from "jotai/utils";
+import { randomUUID } from "expo-crypto";
 
-export type Item = {
+// Type definition for a todo item
+export type TodoItem = {
   id: string;
-  title: string;
-  description: string;
-  timestamp: number;
+  text: string;
 };
 
-const itemsAtom = atomWithStorage<Item[]>("items", []);
+// Persistent atom for the todo list
+export const todoListAtom = atomWithStorage<TodoItem[]>(
+  "todoList",
+  [],
+  createJSONStorage(() => AsyncStorage)
+);
 
-export const useItems = () => {
-  const [items, setItems] = useAtom(itemsAtom);
+// CREATE: Add a new todo
+export const addTodoAtom = atom(null, (get, set, text: string) => {
+  const currentRaw = get(todoListAtom);
+  const current = Array.isArray(currentRaw) ? currentRaw : [];
+  const newItem: TodoItem = { id: randomUUID(), text };
+  set(todoListAtom, [...current, newItem]);
+});
 
-  const addItem = (title: string, description: string = "") => {
-    setItems([
-      ...items,
-      {
-        id: nanoid(),
-        title,
-        description,
-        timestamp: Date.now(),
-      },
-    ]);
-  };
+export const updateTodoAtom = atom(null, (get, set, { id, text }) => {
+  const currentRaw = get(todoListAtom);
+  const current = Array.isArray(currentRaw) ? currentRaw : [];
+  const updated = current.map((item) =>
+    item.id === id ? { ...item, text } : item
+  );
+  set(todoListAtom, updated);
+});
 
-  const updateItem = (id: string, updates: Partial<Omit<Item, "id">>) => {
-    setItems(
-      items.map((item) => (item.id === id ? { ...item, ...updates } : item))
-    );
-  };
-
-  const deleteItem = (id: string) => {
-    setItems(items.filter((item) => item.id !== id));
-  };
-
-  return {
-    items,
-    addItem,
-    updateItem,
-    deleteItem,
-  };
-};
+export const deleteTodoAtom = atom(null, (get, set, id) => {
+  const currentRaw = get(todoListAtom);
+  const current = Array.isArray(currentRaw) ? currentRaw : [];
+  const filtered = current.filter((item) => item.id !== id);
+  set(todoListAtom, filtered);
+});
