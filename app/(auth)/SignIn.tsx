@@ -21,10 +21,12 @@ const SignInScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  router.replace("/screens"); // for development purposes, redirect to screens
+
   const signIn = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      if (user) router.replace("/screens/Welcome");
+      if (user) router.replace("/screens");
     } catch (error: any) {
       console.log(error);
       alert("Sign in failed: " + error.message);
