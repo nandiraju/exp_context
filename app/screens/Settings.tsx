@@ -4,7 +4,7 @@ import React from "react";
 const Settings = () => {
   return (
     <View className="flex-1 justify-center items-center bg-blue-50">
-      <Text>Welcome</Text>
+      <Text>Settings</Text>
     </View>
   );
 };

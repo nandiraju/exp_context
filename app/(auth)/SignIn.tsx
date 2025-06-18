@@ -21,7 +21,7 @@ const SignInScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  router.replace("/screens"); // for development purposes, redirect to screens
+  //router.replace("/screens"); // for development purposes, redirect to screens
 
   const signIn = async () => {
     try {
