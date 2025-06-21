@@ -8,7 +8,7 @@ type LinkTextProps = {
   className?: string;
 };
 
-export const LinkText = ({
+const LinkText = ({
   route,
   text,
   className = "text-gray-800 text-md mt-4 text-center",
@@ -21,3 +21,5 @@ export const LinkText = ({
     </TouchableOpacity>
   );
 };
+
+export default LinkText;

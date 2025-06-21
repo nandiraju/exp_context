@@ -26,7 +26,7 @@ const SignInScreen = () => {
   const signIn = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      if (user) router.replace("/screens");
+      if (user) router.replace("/pages");
     } catch (error: any) {
       console.log(error);
       alert("Sign in failed: " + error.message);

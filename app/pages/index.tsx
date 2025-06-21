@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import TodoApp from "./SimpleToDo";
+import ItemComponent from "../screens/ItemComponent";
 
-const Settings = () => {
+const Welcome = () => {
   return (
     <View className="flex-1 justify-center items-center bg-blue-50">
-      <TodoApp />
+      <Text>Welcome</Text>
+      <ItemComponent />
     </View>
   );
 };
 
-export default Settings;
+export default Welcome;

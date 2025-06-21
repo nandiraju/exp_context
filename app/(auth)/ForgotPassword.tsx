@@ -51,7 +51,7 @@ const ForgotPassword = () => {
         />
 
         <Button title="Reset" onPress={sendLink} />
-        <LinkText route="/SignIn" text="Sign In here" />
+        {/* <LinkText route="/SignIn" text="Sign In here" /> */}
       </View>
     </KeyboardAvoidingView>
   );

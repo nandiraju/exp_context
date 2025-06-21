@@ -5,7 +5,7 @@ import { auth } from "../../FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "expo-router";
 import Button from "../components/UIButton";
-import { LinkText } from "./LinkText";
+import LinkText from "./LinkText";
 
 const SignUpScreen = () => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const SignUpScreen = () => {
   const signUp = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
-      if (user) router.replace("/screens/Welcome");
+      if (user) router.replace("/pages");
     } catch (error: any) {
       console.log(error);
       alert("Sign in failed: " + error.message);
