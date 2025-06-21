@@ -14,7 +14,7 @@ import {
 } from "firebase/auth";
 import { useRouter } from "expo-router";
 import Button from "../components/UIButton";
-import { LinkText } from "./LinkText";
+import LinkText from "./LinkText";
 
 const SignInScreen = () => {
   const router = useRouter();
