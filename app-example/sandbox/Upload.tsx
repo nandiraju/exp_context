@@ -9,6 +9,7 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
 
 export default function UploadScreen() {
@@ -56,6 +57,26 @@ export default function UploadScreen() {
     }
   };
 
+  const pickImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: false,
+        quality: 0.8,
+      });
+
+      if (!result.canceled && result.assets[0]) {
+        const asset = result.assets[0];
+        const fileName = asset.fileName || `image_${Date.now()}.jpg`;
+        const mimeType = asset.mimeType || "image/jpeg";
+
+        await uploadFile(asset.uri, fileName, mimeType);
+      }
+    } catch (error) {
+      Alert.alert("Error", "Failed to pick image");
+    }
+  };
+
   const pickDocument = async () => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
@@ -76,21 +97,70 @@ export default function UploadScreen() {
     }
   };
 
+  const takePhoto = async () => {
+    try {
+      const permissionResult =
+        await ImagePicker.requestCameraPermissionsAsync();
+
+      if (!permissionResult.granted) {
+        Alert.alert(
+          "Permission required",
+          "Camera permission is needed to take photos"
+        );
+        return;
+      }
+
+      const result = await ImagePicker.launchCameraAsync({
+        allowsEditing: false,
+        quality: 0.8,
+      });
+
+      if (!result.canceled && result.assets[0]) {
+        const asset = result.assets[0];
+        const fileName = `photo_${Date.now()}.jpg`;
+        const mimeType = "image/jpeg";
+
+        await uploadFile(asset.uri, fileName, mimeType);
+      }
+    } catch (error) {
+      Alert.alert("Error", "Failed to take photo");
+    }
+  };
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={[styles.button, uploading && styles.buttonDisabled]}
-        onPress={pickDocument}
-        disabled={uploading}
-      >
-        <Text style={styles.buttonText}>Pick Document</Text>
-      </TouchableOpacity>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={[styles.button, uploading && styles.buttonDisabled]}
+          onPress={pickImage}
+          disabled={uploading}
+        >
+          <Text style={styles.buttonText}>Pick Image</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, uploading && styles.buttonDisabled]}
+          onPress={takePhoto}
+          disabled={uploading}
+        >
+          <Text style={styles.buttonText}>Take Photo</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, uploading && styles.buttonDisabled]}
+          onPress={pickDocument}
+          disabled={uploading}
+        >
+          <Text style={styles.buttonText}>Pick Document</Text>
+        </TouchableOpacity>
+      </View>
+
       {uploadStatus ? (
         <View style={styles.statusContainer}>
           <Text style={styles.statusText}>{uploadStatus}</Text>
         </View>
       ) : null}
-    </View>
+    </ScrollView>
   );
 }
 

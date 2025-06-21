@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-
+import UploadScreen from "../screens/Upload";
 const Documents = () => {
   return (
-    <View className="flex-1 justify-center items-center bg-blue-50">
-      <Text>Documents List</Text>
+    <View className="flex-1">
+      <UploadScreen />
     </View>
   );
 };

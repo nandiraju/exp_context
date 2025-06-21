@@ -18,10 +18,12 @@ import LinkText from "./LinkText";
 
 const SignInScreen = () => {
   const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  //router.replace("/screens"); // for development purposes, redirect to screens
+  router.replace("/pages"); // for development purposes, redirect to screens
+  return;
 
   const signIn = async () => {
     try {
