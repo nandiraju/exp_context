@@ -1,53 +1,54 @@
 import React from "react";
 import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
-import { MaterialIcons, FontAwesome5, Ionicons } from "@expo/vector-icons";
-import WorkoutCard from "./MenuCard";
-
-// Icon components using Expo vector icons
-const BodyweightIcon = () => (
-  <MaterialIcons name="accessibility" size={24} color="#FFFFFF" />
-);
-
-const WeightsIcon = () => (
-  <FontAwesome5 name="dumbbell" size={20} color="#FFFFFF" />
-);
-
-const CardioIcon = () => <Ionicons name="heart" size={22} color="#FFFFFF" />;
+import { Ionicons } from "@expo/vector-icons";
+import GenericCard, { CardData } from "./CardWithIcon";
 
 const WorkoutScreen = () => {
-  const workouts = [
+  const workoutCards: CardData[] = [
     {
       id: "1",
-      title: "Full Body Blast",
+      title: "Full Body Burn",
       type: "Bodyweight",
-      duration: "30 min",
-      difficulty: "Intermediate",
-      icon: <BodyweightIcon />,
+      icon: <Ionicons name="barbell-outline" size={40} color="#fff" />,
+      description: "Creative training using your bodyweight",
+      gradientColors: ["#8B5CF6", "#A855F7", "#C084FC"],
     },
     {
       id: "2",
       title: "Strength Training",
       type: "Weights",
-      duration: "45 min",
-      difficulty: "Advanced",
-      icon: <WeightsIcon />,
+      icon: <Ionicons name="fitness-outline" size={40} color="#fff" />,
+      description: "Classic exercises including weights",
+      gradientColors: ["#06B6D4", "#0891B2", "#0E7490"],
     },
     {
       id: "3",
-      title: "Cardio Challenge",
+      title: "Cardio Blast",
       type: "Cardio",
-      duration: "25 min",
-      difficulty: "Beginner",
-      icon: <CardioIcon />,
+      icon: <Ionicons name="flame-outline" size={40} color="#fff" />,
+      description: "Sweat and burn those calories",
+      gradientColors: ["#F97316", "#EA580C", "#DC2626"],
     },
   ];
+
+  const handleCardPress = (data: CardData) => {
+    console.log("Pressed workout:", data.title);
+    // Navigate or trigger action
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        {workouts.map((workout) => (
-          <WorkoutCard key={workout.id} workout={workout} />
-        ))}
+        <View style={{ padding: 10 }}>
+          {workoutCards.map((card) => (
+            <GenericCard
+              key={card.id}
+              data={card}
+              onPress={handleCardPress}
+              style={{ marginBottom: 12 }}
+            />
+          ))}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

@@ -74,11 +74,6 @@ const WorkoutCard: React.FC<WorkoutCardProps> = ({
             <Text style={styles.description}>
               {getDescription(workout.type)}
             </Text>
-            <View style={styles.metaContainer}>
-              <Text style={styles.metaText}>{workout.duration}</Text>
-              <Text style={styles.metaDot}>•</Text>
-              <Text style={styles.metaText}>{workout.difficulty}</Text>
-            </View>
           </View>
         </View>
       </LinearGradient>
