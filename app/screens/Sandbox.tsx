@@ -4,12 +4,28 @@ import React from "react";
 export default function Sandbox() {
   return (
     <ScrollView className="bg-snow-50">
-      {Array.from({ length: 4 }).map((_, idx) => (
-        <NewsCard key={idx} />
-      ))}
+      <NewsCard />
+      <OSakhi />
     </ScrollView>
   );
 }
+
+const OSakhi = () => {
+  return (
+    <View className="bg-white shadow-sm m-5 p-4 border border-gray-50 rounded-xl h-[200px] width-full">
+      <View className="top-0 right-0 absolute m-4">
+        <Text className="font-semibold text-lg">OSakhi</Text>
+      </View>
+      <View className="flex-row justify-between items-center mt-[40px]">
+        <Text className="text-gray-500 text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+          voluptatibus, cumque, voluptatum, quia, quas quisquam voluptatibus
+          cumque voluptatum quia.
+        </Text>
+      </View>
+    </View>
+  );
+};
 
 const NewsCard = () => {
   return (
