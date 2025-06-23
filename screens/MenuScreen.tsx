@@ -1,32 +1,33 @@
-import React from "react";
+import React, { use } from "react";
 import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GenericCard, { CardData } from "./CardWithIcon";
+import { router } from "expo-router";
 
 const WorkoutScreen = () => {
   const workoutCards: CardData[] = [
     {
       id: "1",
-      title: "Full Body Burn",
+      title: "Documents",
       type: "Bodyweight",
-      icon: <Ionicons name="barbell-outline" size={40} color="#fff" />,
-      description: "Creative training using your bodyweight",
+      icon: <Ionicons name="document-outline" size={40} color="#fff" />,
+      description: "Upload your documents ",
       gradientColors: ["#8B5CF6", "#A855F7", "#C084FC"],
     },
     {
       id: "2",
-      title: "Strength Training",
+      title: "Reminders",
       type: "Weights",
-      icon: <Ionicons name="fitness-outline" size={40} color="#fff" />,
-      description: "Classic exercises including weights",
+      icon: <Ionicons name="notifications-outline" size={40} color="#fff" />,
+      description: "Create or enquire about reminders",
       gradientColors: ["#06B6D4", "#0891B2", "#0E7490"],
     },
     {
       id: "3",
-      title: "Cardio Blast",
+      title: "Medications",
       type: "Cardio",
-      icon: <Ionicons name="flame-outline" size={40} color="#fff" />,
-      description: "Sweat and burn those calories",
+      icon: <Ionicons name="medkit-outline" size={40} color="#fff" />,
+      description: "Add and track your medications",
       gradientColors: ["#F97316", "#EA580C", "#DC2626"],
     },
   ];
@@ -34,6 +35,19 @@ const WorkoutScreen = () => {
   const handleCardPress = (data: CardData) => {
     console.log("Pressed workout:", data.title);
     // Navigate or trigger action
+    switch (data.id) {
+      case "1":
+        router.push("/pages/Documents");
+        break;
+      case "2":
+        router.push("/pages/Reminders");
+        break;
+      case "3":
+        router.push("/pages/Medications");
+        break;
+      default:
+        break;
+    }
   };
 
   return (

@@ -2,7 +2,7 @@ import * as WebBrowser from "expo-web-browser";
 import { useAtom } from "jotai";
 import React from "react";
 import { FlatList, Pressable, Text, Image } from "react-native";
-import { newsAtom } from "../../stores/ApiData";
+import { newsAtom } from "@/stores/ApiData";
 
 const NewsCard = () => {
   const [news, setnews] = useAtom(newsAtom);

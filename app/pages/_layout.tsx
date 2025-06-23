@@ -54,6 +54,22 @@ export default function Layout() {
             },
           }}
         />
+        <Drawer.Screen
+          name="Medications" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: "Medications",
+            title: "Medications",
+            drawerIcon: ({ size, color }) => {
+              return (
+                <Ionicons
+                  name={"medkit-outline"}
+                  size={20}
+                  color={"dodgerblue"}
+                />
+              );
+            },
+          }}
+        />
 
         <Drawer.Screen
           name="ChatPage" // This is the name of the page and must match the url from root

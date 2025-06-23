@@ -22,10 +22,9 @@ const SignInScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  router.replace("/pages"); // for development purposes, redirect to screens
-  return;
-
   const signIn = async () => {
+    router.replace("/pages");
+    return; // Temporarily redirect to pages
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       if (user) router.replace("/pages");

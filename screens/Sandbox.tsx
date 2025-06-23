@@ -1,56 +1,24 @@
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Text,
-} from "react-native";
-import React, { use, useEffect } from "react";
-import NewsCard from "./NewsCard";
-import OSakhiCard from "../components/OsakhiCard";
-import MenuScreen from "./MenuScreen";
-import { Ionicons } from "@expo/vector-icons";
+import { ScrollView, TouchableOpacity, Text, Button } from "react-native";
+import React, { use, useEffect, useState } from "react";
+
 import { HeadingDivider } from "@/components/HeadingDivider";
+import ReminderForm from "@/components/reminders/ReminderForm";
 
 export default function Sandbox() {
-  const handleCardPress = (data: any) => {
-    console.log("Pressed card:", data.title);
+  const [showForm, setShowForm] = useState(false);
+  const handleFormSubmit = (data: { name: string }) => {
+    console.log("Submitted:", data);
   };
-
   return (
     <ScrollView className="flex-1 bg-snow-50">
       <HeadingDivider iconName="albums-outline" title="Interact with OSakhi" />
-      <OSakhiCard />
-      <HeadingDivider
-        iconName="medical-outline"
-        title="Start your health journey"
+      <Button title="Open Form" onPress={() => setShowForm(true)} />
+
+      <ReminderForm
+        visible={showForm}
+        onClose={() => setShowForm(false)}
+        onSubmit={handleFormSubmit}
       />
-      <MenuScreen />
-      <HeadingDivider iconName="albums-outline" title="Trending in cancer" />
-      {/* <NewsCard /> */}
     </ScrollView>
   );
 }
-
-// export const HeadingDivider = ({ iconName, title, hideRightIcon }: any) => {
-//   return (
-//     <View
-//       className="flex-row items-center justify-between w-full "
-//       style={{
-//         marginHorizontal: 15,
-//         borderBottomWidth: 1,
-//         paddingBottom: 8,
-//         borderColor: "silver",
-//         marginBottom: 12,
-//       }}
-//     >
-//       <View className="flex-row items-center gap-2 flex-1">
-//         <Ionicons name={iconName} size={24} color="dodgerblue" />
-//         <Text className="text-lg font-bold text-white">{title}</Text>
-//       </View>
-//       {!hideRightIcon && (
-//         <Ionicons name="arrow-forward-outline" size={24} color="dodgerblue" />
-//       )}
-//     </View>
-//   );
-// };

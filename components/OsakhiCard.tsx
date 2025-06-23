@@ -22,7 +22,7 @@ const OSakhiCard = () => {
         <IconButton
           iconName="chatbubble-outline"
           size={30}
-          onPress={() => handleOnPress({ screen: "chat" })}
+          onPress={() => handleOnPress({ screen: "pages/ChatPage" })}
         />
         <IconButton
           iconName="mic-outline"
