@@ -10,6 +10,7 @@ import NewsCard from "./NewsCard";
 import OSakhiCard from "../components/OsakhiCard";
 import MenuScreen from "./MenuScreen";
 import { Ionicons } from "@expo/vector-icons";
+import { HeadingDivider } from "@/components/HeadingDivider";
 
 export default function Sandbox() {
   const handleCardPress = (data: any) => {
@@ -18,7 +19,7 @@ export default function Sandbox() {
 
   return (
     <ScrollView className="flex-1 bg-snow-50">
-      {/* <HeadingDivider iconName="albums-outline" title="Interact with OSakhi" /> */}
+      <HeadingDivider iconName="albums-outline" title="Interact with OSakhi" />
       <OSakhiCard />
       <HeadingDivider
         iconName="medical-outline"
@@ -31,19 +32,25 @@ export default function Sandbox() {
   );
 }
 
-export const HeadingDivider = ({ iconName, title, hideRightIcon }: any) => {
-  return (
-    <View
-      className="flex-row items-center justify-between w-full"
-      style={{ paddingHorizontal: 15 }}
-    >
-      <View className="flex-row items-center gap-2 flex-1">
-        <Ionicons name={iconName} size={24} color="dodgerblue" />
-        <Text className="text-lg font-bold text-white">{title}</Text>
-      </View>
-      {!hideRightIcon && (
-        <Ionicons name="arrow-forward-outline" size={24} color="dodgerblue" />
-      )}
-    </View>
-  );
-};
+// export const HeadingDivider = ({ iconName, title, hideRightIcon }: any) => {
+//   return (
+//     <View
+//       className="flex-row items-center justify-between w-full "
+//       style={{
+//         marginHorizontal: 15,
+//         borderBottomWidth: 1,
+//         paddingBottom: 8,
+//         borderColor: "silver",
+//         marginBottom: 12,
+//       }}
+//     >
+//       <View className="flex-row items-center gap-2 flex-1">
+//         <Ionicons name={iconName} size={24} color="dodgerblue" />
+//         <Text className="text-lg font-bold text-white">{title}</Text>
+//       </View>
+//       {!hideRightIcon && (
+//         <Ionicons name="arrow-forward-outline" size={24} color="dodgerblue" />
+//       )}
+//     </View>
+//   );
+// };
