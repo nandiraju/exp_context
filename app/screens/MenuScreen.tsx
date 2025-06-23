@@ -37,32 +37,17 @@ const WorkoutScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        <View style={{ padding: 10 }}>
-          {workoutCards.map((card) => (
-            <GenericCard
-              key={card.id}
-              data={card}
-              onPress={handleCardPress}
-              style={{ marginBottom: 12 }}
-            />
-          ))}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <View style={{ padding: 5 }}>
+      {workoutCards.map((card) => (
+        <GenericCard
+          key={card.id}
+          data={card}
+          onPress={handleCardPress}
+          style={{ marginBottom: 12 }}
+        />
+      ))}
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F3F4F6",
-  },
-  scrollView: {
-    flex: 1,
-    paddingTop: 20,
-  },
-});
 
 export default WorkoutScreen;

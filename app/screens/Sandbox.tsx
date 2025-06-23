@@ -20,7 +20,10 @@ export default function Sandbox() {
     <ScrollView className="bg-snow-50">
       <HeadingDivider iconName="albums-outline" title="Interact with OSakhi" />
       <OSakhiCard />
-      <HeadingDivider iconName="albums-outline" title="start" />
+      <HeadingDivider
+        iconName="medical-outline"
+        title="Start your health journey"
+      />
       <MenuScreen />
       <HeadingDivider iconName="albums-outline" title="Trending in cancer" />
       <NewsCard />

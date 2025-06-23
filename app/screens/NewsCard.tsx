@@ -7,6 +7,14 @@ import { newsAtom } from "../stores/ApiData";
 export const NewsCard = () => {
   const [news, setnews] = useAtom(newsAtom);
 
+  if (news.length === 0) {
+    return (
+      <Text className="text-center text-gray-400 mt-10">
+        No news available.
+      </Text>
+    );
+  }
+
   const handleClick = (url: string) => {
     WebBrowser.openBrowserAsync(url);
   };
