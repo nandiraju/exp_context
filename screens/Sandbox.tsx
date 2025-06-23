@@ -18,6 +18,11 @@ export default function Sandbox() {
         visible={showForm}
         onClose={() => setShowForm(false)}
         onSubmit={handleFormSubmit}
+        initialData={{
+          title: "Initial title",
+          description: "Initial description",
+          date: "2023-10-01",
+        }}
       />
     </ScrollView>
   );

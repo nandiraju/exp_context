@@ -1,20 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Modal, TextInput, Button, StyleSheet } from "react-native";
 
 interface SimpleDialogFormProps {
   visible: boolean;
   onClose: () => void;
   onSubmit: (data: any) => void;
+  initialData?: any;
 }
 
 export default function ReminderForm({
   visible,
   onClose,
   onSubmit,
+  initialData,
 }: SimpleDialogFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
+
+  useEffect(() => {
+    if (visible) {
+      setTitle(initialData?.title || "");
+      setDescription(initialData.description || "");
+      setDate(initialData.date || "");
+    }
+  }, [visible, initialData]);
 
   const handleSubmit = () => {
     onSubmit({ title, description, date });
