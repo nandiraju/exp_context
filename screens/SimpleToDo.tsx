@@ -9,7 +9,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { useAtom } from "jotai";
-import { itemsListAtom } from "../stores/SimpleStorage";
+import { itemsListAtom } from "@/stores/SimpleStorage";
 import { randomUUID } from "expo-crypto";
 export default function TodoApp() {
   const [todos, setTodos] = useAtom(itemsListAtom);

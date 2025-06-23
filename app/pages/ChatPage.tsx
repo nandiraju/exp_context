@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import ItemComponent from "../screens/ItemComponent";
-import UploadScreen from "../screens/Upload";
-import ChatUI from "../screens/ChatUI";
+import ItemComponent from "@/screens/ItemComponent";
+import UploadScreen from "@/screens/Upload";
+import ChatUI from "@/screens/ChatUI";
 
 const ChatPage = () => {
   return (

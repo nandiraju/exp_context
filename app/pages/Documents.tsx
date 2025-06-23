@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import UploadScreen from "../screens/Upload";
+import UploadScreen from "@/screens/Upload";
 const Documents = () => {
   return (
     <View className="flex-1">

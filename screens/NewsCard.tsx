@@ -2,9 +2,9 @@ import * as WebBrowser from "expo-web-browser";
 import { useAtom } from "jotai";
 import React from "react";
 import { FlatList, Pressable, Text, Image } from "react-native";
-import { newsAtom } from "../stores/ApiData";
+import { newsAtom } from "../../stores/ApiData";
 
-export const NewsCard = () => {
+const NewsCard = () => {
   const [news, setnews] = useAtom(newsAtom);
 
   if (news.length === 0) {
@@ -52,3 +52,5 @@ export const NewsCard = () => {
     </>
   );
 };
+
+export default NewsCard;

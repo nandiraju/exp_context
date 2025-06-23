@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { Pressable, Text, View } from "react-native";
 // TODO: Ensure the correct path to NotesContext. Update the path below if needed.
-import { useNotes } from "../context/NotesContext";
+import { useNotes } from "../../context/NotesContext";
 // import NotesList from "./components/NotesList";
 import { useAtom } from "jotai";
 
-import { counterAtom } from "../stores/Counter";
+import { counterAtom } from "../../stores/Counter";
 // import IconInput from "./components/IconInput";
 import Feather from "react-native-vector-icons/Feather";
 export default function Working() {

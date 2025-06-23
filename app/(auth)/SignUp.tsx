@@ -1,10 +1,12 @@
 import { View, Text, KeyboardAvoidingView, Platform } from "react-native";
 import React, { useState } from "react";
-import IconInput from "../components/IconInput";
-import { auth } from "../../FirebaseConfig";
+import IconInput from "@/components/IconInput";
+import { auth } from "@/FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "expo-router";
-import Button from "../components/UIButton";
+// If the file is actually named Button.tsx, update the import:
+import Button from "@/components/UIButton";
+// Or, if you intended to use UIButton, create the file at ../components/UIButton.tsx
 import LinkText from "./LinkText";
 
 const SignUpScreen = () => {

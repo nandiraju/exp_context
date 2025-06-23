@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import TodoApp from "../screens/SimpleToDo";
+import TodoApp from "@/screens/SimpleToDo";
 
 const Settings = () => {
   return (

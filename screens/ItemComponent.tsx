@@ -16,7 +16,7 @@ import {
   updateTodoAtom,
   deleteTodoAtom,
   TodoItem,
-} from "../stores/Items";
+} from "../../stores/Items";
 
 export default function ItemComponent() {
   const [todos] = useAtom(todoListAtom);

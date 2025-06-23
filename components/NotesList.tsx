@@ -1,9 +1,9 @@
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { useNotes } from "../context/NotesContext";
+import { useNotes } from "../../context/NotesContext";
 import { Alert } from "react-native";
 import { useAtom } from "jotai";
-import { counterAtom } from "../stores/Counter";
+import { counterAtom } from "../../stores/Counter";
 import { useAtomValue } from "jotai";
 
 const NotesList = () => {

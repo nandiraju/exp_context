@@ -6,14 +6,15 @@ import {
   Alert,
 } from "react-native";
 import React, { useState } from "react";
-import IconInput from "../components/IconInput";
+// import IconInput from "../components/IconInput";
+import IconInput from "../../components/IconInput";
 import { auth } from "../../FirebaseConfig";
 import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useRouter } from "expo-router";
-import Button from "../components/UIButton";
+import Button from "../../components/UIButton";
 import LinkText from "./LinkText";
 
 const ForgotPassword = () => {
