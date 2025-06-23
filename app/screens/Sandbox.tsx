@@ -1,10 +1,15 @@
 import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import React from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Sandbox() {
+  const handleCardPress = (data: any) => {
+    console.log("Pressed card:", data.title);
+  };
+
   return (
     <ScrollView className="bg-snow-50">
-      <NewsCard />
+      {/* <NewsCard /> */}
       <OSakhi />
     </ScrollView>
   );
@@ -22,6 +27,11 @@ const OSakhi = () => {
           voluptatibus, cumque, voluptatum, quia, quas quisquam voluptatibus
           cumque voluptatum quia.
         </Text>
+      </View>
+      <View className="flex-row justify-between items-center mt-4">
+        <Ionicons name="settings-outline" size={40} color="dodgerblue" />
+        <Ionicons name="chatbubble-outline" size={40} color="dodgerblue" />
+        <Ionicons name="albums-outline" size={40} color="dodgerblue" />
       </View>
     </View>
   );
