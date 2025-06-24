@@ -1,8 +1,9 @@
-import { ScrollView, TouchableOpacity, Text, Button } from "react-native";
+import { ScrollView, TouchableOpacity, Text, Button, View } from "react-native";
 import React, { use, useEffect, useState } from "react";
 
 import { HeadingDivider } from "@/components/HeadingDivider";
 import ReminderForm from "@/components/reminders/ReminderForm";
+import RemindersList from "@/components/reminders/RemindersList";
 
 export default function Sandbox() {
   const [showForm, setShowForm] = useState(false);
@@ -10,11 +11,13 @@ export default function Sandbox() {
     console.log("Submitted:", data);
   };
   return (
-    <ScrollView className="flex-1 bg-snow-50">
+    <View className="flex-1 bg-snow-50">
       <HeadingDivider iconName="albums-outline" title="Interact with OSakhi" />
-      <Button title="Open Form" onPress={() => setShowForm(true)} />
+      <RemindersList></RemindersList>
 
-      <ReminderForm
+      {/* <Button title="Open Form" onPress={() => setShowForm(true)} /> */}
+
+      {/* <ReminderForm
         visible={showForm}
         onClose={() => setShowForm(false)}
         onSubmit={handleFormSubmit}
@@ -23,7 +26,7 @@ export default function Sandbox() {
           description: "Initial description",
           date: "2023-10-01",
         }}
-      />
-    </ScrollView>
+      /> */}
+    </View>
   );
 }

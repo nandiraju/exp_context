@@ -4,7 +4,7 @@ import RemindersList from "@/components/reminders/RemindersList";
 
 const Reminders = () => {
   return (
-    <View className="flex-1 ">
+    <View className="flex-1">
       <RemindersList />
     </View>
   );
