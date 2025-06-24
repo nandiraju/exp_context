@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   dialog: {
-    backgroundColor: "#fff",
+    backgroundColor: "#f5f5f5",
     padding: 20,
     width: "80%",
 
