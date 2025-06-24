@@ -83,27 +83,18 @@ export default function ReminderForm({
               value={date}
               onChangeText={setDate}
             />
-            <IconInput
-              iconName="security"
-              iconSize={20}
-              placeholder="password"
-              style={{ width: "80%", height: 45 }}
-            />
 
             <View style={styles.buttonRow}>
               <UIButton
                 title="Cancel"
-                className="bg-gray-500 p-4 rounded-full w-[120px] mx-auto mt-10 justify-center items-center"
+                className="bg-gray-500 p-3 rounded-full w-[120px] mx-auto justify-center items-center"
                 onPress={onClose}
               />
               <UIButton
                 title="Save"
-                className="bg-blue-500 p-4 rounded-full w-[120px] mx-auto mt-10 justify-center items-center"
+                className="bg-blue-500 p-3 rounded-full w-[120px] mx-auto  justify-center items-center"
                 onPress={handleSubmit}
               />
-
-              {/* <Button title="Cancel" onPress={onClose} />
-            <Button title="Submit" onPress={handleSubmit} /> */}
             </View>
           </View>
         </View>
@@ -141,6 +132,10 @@ const styles = StyleSheet.create({
   buttonRow: {
     flexDirection: "row",
     justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+    padding: 2,
+    // backgroundColor: "red",
     // justifyContent: "space-between",
   },
 });
