@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import UIButton from "../UIButton";
 import IconInput from "../IconInput";
+import { Ionicons } from "@expo/vector-icons";
 
 interface SimpleDialogFormProps {
   visible: boolean;
@@ -59,9 +60,19 @@ export default function ReminderForm({
       >
         <View style={styles.modalOverlay}>
           <View style={styles.dialog}>
-            <Text className="font-semibold pb-4 text-gray-400">
-              Enter the reminder details
-            </Text>
+            <View className="flex-row justify-start  items-center mb-4">
+              <Ionicons
+                name="notifications-outline"
+                size={24}
+                color="gray"
+                onPress={onClose}
+              />
+
+              <Text className="font-semibold  text-gray-400 ml-2">
+                Enter the reminder details
+              </Text>
+            </View>
+
             <IconInput
               iconName="mail"
               iconSize={20}
