@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
-  Button,
   FlatList,
   TouchableOpacity,
   StyleSheet,
@@ -13,10 +11,10 @@ import { itemsListAtom } from "@/stores/SimpleStorage";
 import { randomUUID } from "expo-crypto";
 import ReminderForm from "./ReminderForm";
 import UIButton from "../UIButton";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function RemindersList() {
   const [todos, setTodos] = useAtom(itemsListAtom);
-  const [input, setInput] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
 
@@ -27,50 +25,24 @@ export default function RemindersList() {
   });
 
   const handleFormSubmit = (data: any) => {
-    console.log("Submitted:", data);
     if (editingId) {
-      // setTodos(
-      //   todos.map((todo) => (todo.id === editingId ? { ...todo, data } : data))
-      // );
-      const updatedTodos = todos.map((todo) => {
-        if (todo.id === editingId) {
-          return { ...todo, data };
-        } else {
-          return todo;
-        }
-      });
+      const updatedTodos = todos.map((todo) =>
+        todo.id === editingId ? { ...todo, ...data } : todo
+      );
       setTodos(updatedTodos);
       setEditingId(null);
     } else {
       const newTodo = {
-        id: randomUUID?.() || Date.now().toString(),
+        id: randomUUID(),
         title: data.title.trim(),
         description: data.description.trim(),
         date: data.date.trim(),
       };
       setTodos([...todos, newTodo]);
     }
-  };
 
-  const handleSubmit = () => {
-    if (!input.trim()) return;
-
-    if (editingId) {
-      setTodos(
-        todos.map((todo) =>
-          todo.id === editingId ? { ...todo, text: input.trim() } : todo
-        )
-      );
-      setEditingId(null);
-    } else {
-      const newTodo = {
-        id: randomUUID?.() || Date.now().toString(),
-        text: input.trim(),
-      };
-      setTodos([...todos, newTodo]);
-    }
-
-    setInput("");
+    setSelecteditem({ title: "", description: "", date: "" });
+    setShowForm(false);
   };
 
   const handleDelete = (id: string) => {
@@ -78,15 +50,12 @@ export default function RemindersList() {
   };
 
   const startEdit = (id: string) => {
-    setEditingId(id);
     const itemToEdit = todos.find((todo) => todo.id === id);
-    setSelecteditem(itemToEdit);
-    console.log("itemToEdit", itemToEdit);
-    setShowForm(true);
-  };
-
-  const openForm = () => {
-    setShowForm(true);
+    if (itemToEdit) {
+      setEditingId(id);
+      setSelecteditem(itemToEdit);
+      setShowForm(true);
+    }
   };
 
   return (
@@ -95,23 +64,32 @@ export default function RemindersList() {
         data={todos}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={styles.todoItem}>
-            <Text style={styles.todoText}>{item.title}</Text>
-            <Text style={styles.todoText}>{item.description}</Text>
-            <Text style={styles.todoText}>{item.date}</Text>
-            <TouchableOpacity onPress={() => startEdit(item.id)}>
-              <Text style={styles.edit}>Edit</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleDelete(item.id)}>
-              <Text style={styles.delete}>Delete</Text>
-            </TouchableOpacity>
+          <View className="flex-column bg-white rounded-lg p-4 mb-3 shadow-sm overflow-hidden">
+            <View className="absolute top-[-100] right-[-125] w-64 h-64 bg-blue-500/5 rounded-full" />
+            <View className="flex-1 flex-column rounded-md p-4">
+              <Text className="font-semibold">{item.title}</Text>
+              <Text className="text-gray-600 mt-2">{item.description}</Text>
+            </View>
+            <View className="flex-row items-center pt-2 mt-4 justify-between border-t-[0.3px] border-gray-300">
+              <TouchableOpacity onPress={() => startEdit(item.id)}>
+                <Ionicons name="create-outline" size={20} color="blue" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => handleDelete(item.id)}>
+                <Ionicons name="trash-outline" size={20} color="red" />
+              </TouchableOpacity>
+            </View>
           </View>
         )}
       />
 
-      {/* New Code from here */}
-
-      <UIButton title="Create" onPress={openForm} />
+      <UIButton
+        title="Create"
+        onPress={() => {
+          setEditingId(null);
+          setSelecteditem({ title: "", description: "", date: "" });
+          setShowForm(true);
+        }}
+      />
 
       <ReminderForm
         visible={showForm}
@@ -124,22 +102,5 @@ export default function RemindersList() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 24 },
-  input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 4,
-  },
-  todoItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 8,
-    borderBottomWidth: 1,
-    borderColor: "#eee",
-  },
-  todoText: { flex: 1 },
-  edit: { color: "blue", marginRight: 10 },
-  delete: { color: "red" },
+  container: { flex: 1, padding: 24, backgroundColor: "#f5f5f5" },
 });

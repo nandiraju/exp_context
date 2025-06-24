@@ -38,7 +38,8 @@ export default function ReminderForm({
   }, [visible, initialData]);
 
   const handleSubmit = () => {
-    onSubmit({ title, description, date });
+    //onSubmit({ title, description, date });
+    onSubmit({ ...initialData, title, description, date });
     setTitle("");
     setDescription("");
     setDate("");
@@ -58,7 +59,9 @@ export default function ReminderForm({
       >
         <View style={styles.modalOverlay}>
           <View style={styles.dialog}>
-            <Text style={styles.title}>Enter Name</Text>
+            <Text className="font-semibold pb-4 text-gray-400">
+              Enter the reminder details
+            </Text>
             <IconInput
               iconName="mail"
               iconSize={20}
