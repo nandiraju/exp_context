@@ -11,7 +11,7 @@ const Button = ({
   onPress,
   title,
   className = "bg-blue-500 p-4 rounded-md w-[200px] mx-auto mt-10 justify-center items-center shadow-md",
-  textClassName = "text-cyan-100 text-md",
+  textClassName = "text-cyan-100 text-md  font-bold",
   ...props
 }: ButtonProps) => {
   return (

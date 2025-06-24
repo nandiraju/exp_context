@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Modal, TextInput, Button, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Modal,
+  TextInput,
+  Button,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
+import UIButton from "../UIButton";
+import IconInput from "../IconInput";
 
 interface SimpleDialogFormProps {
   visible: boolean;
@@ -41,33 +52,62 @@ export default function ReminderForm({
       animationType="fade"
       onRequestClose={onClose}
     >
-      <View style={styles.modalOverlay}>
-        <View style={styles.dialog}>
-          <Text style={styles.title}>Enter Name</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Title"
-            value={title}
-            onChangeText={setTitle}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Description"
-            value={description}
-            onChangeText={setDescription}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Date"
-            value={date}
-            onChangeText={setDate}
-          />
-          <View style={styles.buttonRow}>
-            <Button title="Cancel" onPress={onClose} />
-            <Button title="Submit" onPress={handleSubmit} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        className="flex-1"
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.dialog}>
+            <Text style={styles.title}>Enter Name</Text>
+            <IconInput
+              iconName="mail"
+              iconSize={20}
+              style={{ width: "80%", height: 45 }}
+              placeholder="Title"
+              value={title}
+              onChangeText={setTitle}
+            />
+            <IconInput
+              iconName="mail"
+              iconSize={20}
+              style={{ width: "80%", height: 45 }}
+              placeholder="Description"
+              value={description}
+              onChangeText={setDescription}
+            />
+            <IconInput
+              iconName="mail"
+              iconSize={20}
+              style={{ width: "80%", height: 45 }}
+              placeholder="Date"
+              value={date}
+              onChangeText={setDate}
+            />
+            <IconInput
+              iconName="security"
+              iconSize={20}
+              placeholder="password"
+              style={{ width: "80%", height: 45 }}
+            />
+
+            <View style={styles.buttonRow}>
+              <UIButton
+                title="Cancel"
+                className="bg-gray-500 p-4 rounded-full w-[120px] mx-auto mt-10 justify-center items-center"
+                onPress={onClose}
+              />
+              <UIButton
+                title="Save"
+                className="bg-blue-500 p-4 rounded-full w-[120px] mx-auto mt-10 justify-center items-center"
+                onPress={handleSubmit}
+              />
+
+              {/* <Button title="Cancel" onPress={onClose} />
+            <Button title="Submit" onPress={handleSubmit} /> */}
+            </View>
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }
@@ -83,7 +123,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 20,
     width: "80%",
-    borderRadius: 8,
+
+    borderRadius: 18,
     elevation: 5,
   },
   title: {
@@ -99,6 +140,7 @@ const styles = StyleSheet.create({
   },
   buttonRow: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    // justifyContent: "space-between",
   },
 });
