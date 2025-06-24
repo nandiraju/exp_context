@@ -85,7 +85,9 @@ export default function RemindersList() {
     setShowForm(true);
   };
 
-  const openForm = () => {};
+  const openForm = () => {
+    setShowForm(true);
+  };
 
   return (
     <View style={styles.container}>
