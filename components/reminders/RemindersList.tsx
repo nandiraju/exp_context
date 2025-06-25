@@ -80,6 +80,18 @@ export default function RemindersList() {
             </View>
           </View>
         )}
+        ListEmptyComponent={() => (
+          <View className="h-[75vh] items-center justify-center px-4">
+            <Ionicons
+              name="notifications-outline"
+              size={100}
+              color="dodgerblue"
+            />
+            <Text className="text-gray-500 mt-4 text-lg font-semibold">
+              No reminders found. {"\n"}Start creating some!
+            </Text>
+          </View>
+        )}
       />
 
       <UIButton

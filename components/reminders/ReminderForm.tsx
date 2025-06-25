@@ -74,7 +74,7 @@ export default function ReminderForm({
             </View>
 
             <IconInput
-              iconName="mail"
+              iconName="text-snippet"
               iconSize={20}
               style={{ width: "80%", height: 45 }}
               placeholder="Title"
@@ -82,7 +82,7 @@ export default function ReminderForm({
               onChangeText={setTitle}
             />
             <IconInput
-              iconName="mail"
+              iconName="edit-note"
               iconSize={20}
               style={{ width: "80%", height: 45 }}
               placeholder="Description"
@@ -90,7 +90,7 @@ export default function ReminderForm({
               onChangeText={setDescription}
             />
             <IconInput
-              iconName="mail"
+              iconName="edit-calendar"
               iconSize={20}
               style={{ width: "80%", height: 45 }}
               placeholder="Date"

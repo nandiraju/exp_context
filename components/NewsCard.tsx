@@ -1,10 +1,14 @@
 import * as WebBrowser from "expo-web-browser";
 import { useAtom } from "jotai";
 import React from "react";
-import { FlatList, Pressable, Text, Image } from "react-native";
+import { FlatList, Pressable, Text, Image, View } from "react-native";
 import { newsAtom } from "@/stores/ApiData";
 
-const NewsCard = () => {
+type NewsCardProps = {
+  count: number;
+};
+
+const NewsCard = ({ count }: NewsCardProps) => {
   const [news, setnews] = useAtom(newsAtom);
 
   if (news.length === 0) {
@@ -22,32 +26,39 @@ const NewsCard = () => {
   return (
     <>
       <FlatList
-        data={news}
+        data={news.slice(0, count)} // Display only the first 5 news items
         keyExtractor={(item, index) => item.id?.toString() || index.toString()}
         renderItem={({ item }) => (
           <Pressable
             onPress={() => handleClick(item.link)}
-            className="bg-white m-5 p-4 border border-gray-50 rounded-xl"
+            className="bg-white mx-5 my-2 border border-gray-200 rounded-xl mb-4 p-4 pb-7"
           >
-            <Text className="text-semibold text-lg text-bold">
+            <Text className="text-lg font-semibold text-gray-800">
               {item.title}
             </Text>
-            {item.image && (
+
+            <View className="flex-row mt-3 gap-3 items-start">
               <Image
-                source={{ uri: item.image }}
-                className="mt-2 rounded-xl w-[100px] h-[100px]"
+                source={{
+                  uri: item.image
+                    ? item.image
+                    : "https://via.placeholder.com/100?text=No+Image",
+                }}
+                className="w-[100px] h-[100px] rounded-xl"
                 resizeMode="cover"
               />
-            )}
-            <Text className="mt-2 text-gray-500 text-sm">{item.content}</Text>
+              <View className="flex-1">
+                <Text
+                  numberOfLines={5}
+                  ellipsizeMode="tail"
+                  className="text-sm text-gray-600"
+                >
+                  {item.content}
+                </Text>
+              </View>
+            </View>
           </Pressable>
         )}
-        // ListEmptyComponent={
-        //   <Text className="text-center text-gray-400 mt-10">
-        //     No news available.
-        //   </Text>
-        // }
-        scrollEnabled={false}
       />
     </>
   );
