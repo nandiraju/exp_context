@@ -1,11 +1,16 @@
 import { View, Text, Image } from "react-native";
 import IconButton from "./IconButton";
 import { router } from "expo-router";
+import * as WebBrowser from "expo-web-browser";
 
-const OSakhiCard = () => {
-  const handleOnPress = (data: any) => {
-    console.log(data);
-    router.push(data.screen);
+const OSakhiCard = ({ handleOnPress }: any) => {
+  // const handleOnPress = (data: any) => {
+  //   console.log(data);
+  //   router.push(data.screen);
+  // };
+
+  const handleClick = () => {
+    WebBrowser.openBrowserAsync("https://1cell-agent.vercel.app/");
   };
 
   return (
@@ -24,10 +29,15 @@ const OSakhiCard = () => {
           size={30}
           onPress={() => handleOnPress({ screen: "pages/ChatPage" })}
         />
-        <IconButton
+        {/* <IconButton
           iconName="mic-outline"
           size={30}
           onPress={() => handleOnPress({ screen: "documents" })}
+        /> */}
+        <IconButton
+          iconName="videocam-outline"
+          size={30}
+          onPress={() => handleClick()}
         />
       </View>
     </View>

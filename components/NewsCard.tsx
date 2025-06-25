@@ -11,7 +11,7 @@ type NewsCardProps = {
 const NewsCard = ({ count }: NewsCardProps) => {
   const [news, setnews] = useAtom(newsAtom);
 
-  if (news.length === 0) {
+  if (!news || news.length === 0) {
     return (
       <Text className="text-center text-gray-400 mt-10">
         No news available.
@@ -26,7 +26,7 @@ const NewsCard = ({ count }: NewsCardProps) => {
   return (
     <>
       <FlatList
-        data={news.slice(0, count)} // Display only the first 5 news items
+        data={count == -1 ? news : news.slice(0, count)}
         keyExtractor={(item, index) => item.id?.toString() || index.toString()}
         renderItem={({ item }) => (
           <Pressable

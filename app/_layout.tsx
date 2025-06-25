@@ -28,7 +28,7 @@ export default function RootLayout() {
         name="(auth)/ForgotPassword"
         options={{ headerShown: false, presentation: "modal" }}
       />
-      <Stack.Screen name="pages/Welcome" options={{ headerShown: false }} />
+      <Stack.Screen name="pages" options={{ headerShown: false }} />
     </Stack>
   );
 }
