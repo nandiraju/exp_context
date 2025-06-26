@@ -10,10 +10,18 @@ import {
   ScrollView,
 } from "react-native";
 import * as DocumentPicker from "expo-document-picker";
+import IconInput from "@/components/IconInput";
+import { documentsAtom, userAtom } from "@/stores/SimpleStorage";
+import { useAtom } from "jotai";
+import { randomUUID } from "expo-crypto";
 
 export default function UploadScreen() {
   const [uploading, setUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<string>("");
+  const [documentName, setDocumentName] = useState("");
+  const [documents, setDocuments] = useAtom(documentsAtom);
+
+  const [user] = useAtom(userAtom);
 
   const uploadFile = async (
     uri: string,
@@ -24,25 +32,40 @@ export default function UploadScreen() {
       setUploading(true);
       setUploadStatus("Uploading...");
 
+      const id = randomUUID(); // unique identifier for the document
+
       const formData = new FormData();
+
       formData.append("file", {
         uri,
         name: fileName,
         type: mimeType,
       } as any);
 
-      const response = await fetch("https://eop.me", {
-        method: "POST",
-        body: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      formData.append("patient_id", user?.email);
+      formData.append("document_id", id);
+
+      const response = await fetch(
+        "https://n8n.expertopinion.me/webhook/d25c2dab-66b3-4823-aaf4-3aa61ffac930",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         const result = await response.text();
         setUploadStatus(`Upload successful: ${result}`);
         Alert.alert("Success", "File uploaded successfully!");
+        // Once doc uploads, create a new document object
+        setDocuments([
+          ...documents,
+          { name: documentName, uri, id, createdAt: new Date().toISOString() },
+        ]);
+        setDocumentName(""); // Clear the input field after upload
       } else {
         throw new Error(`Upload failed: ${response.status}`);
       }
@@ -58,6 +81,11 @@ export default function UploadScreen() {
 
   const pickDocument = async () => {
     try {
+      if (documentName.trim() === "") {
+        Alert.alert("Error", "Please enter a title for the document.");
+        return;
+      }
+
       const result = await DocumentPicker.getDocumentAsync({
         type: "*/*",
         copyToCacheDirectory: true,
@@ -78,6 +106,14 @@ export default function UploadScreen() {
 
   return (
     <View style={styles.container}>
+      <IconInput
+        placeholder="Enter a title for the document"
+        iconName="upload-file"
+        iconSize={20}
+        style={{ width: "80%", height: 50 }}
+        value={documentName}
+        onChangeText={setDocumentName}
+      />
       <TouchableOpacity
         style={[styles.button, uploading && styles.buttonDisabled]}
         onPress={pickDocument}
