@@ -13,7 +13,7 @@ import Button from "@/components/UIButton";
 import LinkText from "./LinkText";
 import { useRouter } from "expo-router";
 import { useAtom } from "jotai";
-import { accessTokenAtom } from "@/stores/SimpleStorage";
+import { accessTokenAtom, userAtom } from "@/stores/SimpleStorage";
 
 const SignInScreen = () => {
   const router = useRouter();
@@ -21,6 +21,7 @@ const SignInScreen = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const [, setUser] = useAtom(userAtom);
 
   // ✅ Redirect if already signed in
   useEffect(() => {
@@ -68,6 +69,7 @@ const SignInScreen = () => {
       // Store access token in global state
       if (data?.token) {
         setAccessToken(data.token);
+        setUser({ email }); // Store user email as string
         router.replace("/pages"); // or your authenticated screen
       } else {
         throw new Error("No access token returned");

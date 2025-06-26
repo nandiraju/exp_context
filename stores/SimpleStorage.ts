@@ -9,6 +9,12 @@ export const accessTokenAtom = atomWithStorage<string | null>(
   createJSONStorage(() => AsyncStorage)
 );
 
+export const userAtom = atomWithStorage<{} | null>(
+  "user",
+  {},
+  createJSONStorage(() => AsyncStorage)
+);
+
 export type Item = any;
 
 // Persistent todo list atom with local storage
