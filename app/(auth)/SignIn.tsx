@@ -14,6 +14,7 @@ import LinkText from "./LinkText";
 import { useRouter } from "expo-router";
 import { useAtom } from "jotai";
 import { accessTokenAtom, userAtom } from "@/stores/SimpleStorage";
+import { SvgUri } from "react-native-svg";
 
 const SignInScreen = () => {
   const router = useRouter();
@@ -87,13 +88,10 @@ const SignInScreen = () => {
       className="flex-1"
     >
       <View className="flex-1 justify-center items-center bg-snow gap-2 px-4">
-        <Image
-          source={{
-            uri: "https://images.pexels.com/photos/5870534/pexels-photo-5870534.jpeg",
-          }}
-          className="rounded-full mb-5 shadow-2xl"
-          resizeMode="cover"
-          style={{ width: 100, height: 100 }}
+        <SvgUri
+          width="100"
+          height="100"
+          uri="https://www.svgrepo.com/show/408346/chat-message-text-sms-comment-1.svg"
         />
 
         <Text className="mb-5 font-bold text-xl">Sign In</Text>

@@ -81,7 +81,7 @@ export default function RemindersList() {
           </View>
         )}
         ListEmptyComponent={() => (
-          <View className="h-[75vh] items-center justify-center px-4">
+          <View className="h-[70vh] items-center justify-center px-4">
             <Ionicons
               name="notifications-outline"
               size={100}

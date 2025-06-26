@@ -11,6 +11,7 @@ import IconInput from "@/components/IconInput";
 import Button from "@/components/UIButton";
 import LinkText from "./LinkText";
 import { useRouter } from "expo-router";
+import { SvgUri } from "react-native-svg";
 
 const SignUpScreen = () => {
   const router = useRouter();
@@ -85,6 +86,11 @@ const SignUpScreen = () => {
       className="flex-1"
     >
       <View className="flex-1 justify-center items-center bg-snow gap-2">
+        <SvgUri
+          width="100"
+          height="100"
+          uri="https://www.svgrepo.com/show/223045/account.svg"
+        />
         <Text className="mb-5 font-bold text-xl">Sign up</Text>
 
         <IconInput

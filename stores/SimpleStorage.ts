@@ -15,6 +15,12 @@ export const userAtom = atomWithStorage<{} | null>(
   createJSONStorage(() => AsyncStorage)
 );
 
+export const documentsAtom = atomWithStorage<{} | null>(
+  "documents",
+  {},
+  createJSONStorage(() => AsyncStorage)
+);
+
 export type Item = any;
 
 // Persistent todo list atom with local storage

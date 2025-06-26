@@ -16,6 +16,7 @@ import {
 import { useRouter } from "expo-router";
 import Button from "../../components/UIButton";
 import LinkText from "./LinkText";
+import { SvgUri } from "react-native-svg";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -40,6 +41,11 @@ const ForgotPassword = () => {
       className="flex-1"
     >
       <View className="flex-1 justify-center items-center bg-snow gap-2 ">
+        <SvgUri
+          width="100"
+          height="100"
+          uri="https://www.svgrepo.com/show/246833/key-password.svg"
+        />
         <Text className="mb-5 font-bold text-xl">Forgot Password</Text>
 
         <IconInput
