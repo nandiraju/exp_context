@@ -7,7 +7,9 @@ export default function AgentScreen() {
     <WebView
       style={styles.container}
       //source={{ uri: "https://ai.nandiraju.com/" }}
-      source={{ uri: "https://1cell-agent.vercel.app/" }}
+      source={{ uri: "https://osakhi-agent.vercel.app/" }}
+      allowsInlineMediaPlayback
+      mediaPlaybackRequiresUserAction={false}
     />
   );
 }

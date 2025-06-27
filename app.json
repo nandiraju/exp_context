@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "base-template",
-    "slug": "base-template",
+    "name": "OSakhi",
+    "slug": "OSakhi",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "basetemplate",
+    "scheme": "osakhi",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
