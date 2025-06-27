@@ -10,15 +10,16 @@ const OSakhiCard = ({ handleOnPress }: any) => {
   // };
 
   const handleClick = () => {
-    WebBrowser.openBrowserAsync("https://1cell-agent.vercel.app/");
+    //WebBrowser.openBrowserAsync("https://1cell-agent.vercel.app/");
+    router.push("/agent_screen");
   };
 
   return (
-    <View className="bg-whitex border border-gray-100 rounded-xl width-[200px] m-auto p-5">
+    <View className="bg-whitex m-auto p-5 border border-gray-100 rounded-xl width-[200px]">
       <View className="">
         <Image
           source={require("@/assets/images/osakhi.png")}
-          className="mt-2 w-60 h-60 rounded-full border-red-100 border-2 shadow-lg"
+          className="shadow-lg mt-2 border-2 border-red-100 rounded-full w-60 h-60"
           resizeMode="cover"
         />
       </View>
