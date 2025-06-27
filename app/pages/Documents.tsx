@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import UploadScreen from "@/app/upload_screen/Upload";
 import UIButton from "@/components/UIButton";
@@ -7,6 +7,9 @@ import { useAtom } from "jotai";
 import { documentsAtom } from "@/stores/SimpleStorage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import { SvgUri } from "react-native-svg";
+
+import dayjs from "@/helpers/Helper";
 
 const Documents = () => {
   const [documents, setDocuments] = useAtom(documentsAtom);
@@ -14,16 +17,15 @@ const Documents = () => {
   useEffect(() => {
     // Fetch documents from local storage or API if needed
     // For now, we assume documentsAtom is already populated
-    console.log("Documents: ", documents);
+    //console.log("Documents: ", documents);
   }, [documents]);
 
   return (
-    <SafeAreaView className="flex-1">
+    <View className="flex-1 pb-10">
       <FlatList
-        data={Array.isArray(documents) ? documents : []}
-        renderItem={({ item }) => (
-          <Text>{item?.name || JSON.stringify(item)}</Text>
-        )}
+        className="pt-4 px-4"
+        data={documents || []}
+        renderItem={({ item }) => <DocumentCard item={item} />}
         keyExtractor={(item, index) => item?.id?.toString() || index.toString()}
         ListEmptyComponent={() => (
           <View className="h-[70vh] items-center justify-center px-4">
@@ -41,7 +43,48 @@ const Documents = () => {
         }}
       />
       {/* <UploadScreen /> */}
-    </SafeAreaView>
+    </View>
+  );
+};
+
+export const DocumentCard = ({ item }: { item: any }) => {
+  const [documents, setDocuments] = useAtom(documentsAtom);
+
+  const deleteDocument = (id: string) => {
+    setDocuments(documents.filter((doc) => doc.id !== id));
+  };
+  const chatWithDocument = (id: string) => {
+    console.log("Chat with document ID:", id);
+  };
+
+  return (
+    <View className="flex-row items-center bg-white mb-4 px-4 py-3 rounded-lg">
+      <SvgUri
+        width="50"
+        height="50"
+        uri="https://www.svgrepo.com/show/373961/pdf2.svg"
+      />
+
+      <View className="pl-4 flex-1">
+        <Pressable onPress={() => chatWithDocument(item.id)}>
+          <Text className="font-semibold">
+            {item?.name || JSON.stringify(item)}
+          </Text>
+          <Text className="text-gray-300">
+            {dayjs(item.createdAt).fromNow()}
+          </Text>
+        </Pressable>
+      </View>
+
+      <Pressable onPress={() => deleteDocument(item.id)}>
+        <Ionicons
+          name="trash-outline"
+          size={15}
+          color="red"
+          style={{ marginLeft: "auto", opacity: 0.5 }}
+        />
+      </Pressable>
+    </View>
   );
 };
 

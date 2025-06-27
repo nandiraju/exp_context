@@ -14,6 +14,7 @@ import IconInput from "@/components/IconInput";
 import { documentsAtom, userAtom } from "@/stores/SimpleStorage";
 import { useAtom } from "jotai";
 import { randomUUID } from "expo-crypto";
+import { SvgUri } from "react-native-svg";
 
 export default function UploadScreen() {
   const [uploading, setUploading] = useState(false);
@@ -63,7 +64,14 @@ export default function UploadScreen() {
         // Once doc uploads, create a new document object
         setDocuments([
           ...documents,
-          { name: documentName, uri, id, createdAt: new Date().toISOString() },
+          {
+            name: documentName,
+            uri,
+            id,
+            createdAt: new Date().toISOString(),
+            fileName,
+            mimeType,
+          },
         ]);
         setDocumentName(""); // Clear the input field after upload
       } else {
@@ -106,6 +114,14 @@ export default function UploadScreen() {
 
   return (
     <View style={styles.container}>
+      <SvgUri
+        width="100"
+        height="100"
+        className="flex-row justify-center items-center mb-5"
+        uri="https://www.svgrepo.com/show/499790/upload.svg"
+      />
+      <Text style={styles.title}>Upload Document</Text>
+
       <IconInput
         placeholder="Enter a title for the document"
         iconName="upload-file"
@@ -135,17 +151,18 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "#fff",
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 40,
+    marginBottom: 20,
     color: "#333",
   },
   buttonContainer: {
-    gap: 15,
+    gap: 20,
   },
   button: {
     backgroundColor: "#007AFF",

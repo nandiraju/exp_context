@@ -1,3 +1,5 @@
+import { userAtom } from "@/stores/SimpleStorage";
+import { useAtom } from "jotai";
 import React, { useState, useRef, useCallback } from "react";
 import {
   View,
@@ -14,6 +16,8 @@ const ChatUI = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const flatListRef = useRef(null);
+
+  const [user] = useAtom(userAtom); // Assuming you have a userAtom to get user info
 
   const scrollToBottom = () => {
     flatListRef.current?.scrollToEnd({ animated: true });
@@ -34,9 +38,9 @@ const ChatUI = () => {
 
     try {
       const response = await fetch(
-        `https://n8n.expertopinion.me/webhook/83e0e2d4-bfa1-4f9e-b0e7-1eef7a1f7cf3?patient_id=555&question=${encodeURIComponent(
-          input
-        )}`,
+        `https://n8n.expertopinion.me/webhook/83e0e2d4-bfa1-4f9e-b0e7-1eef7a1f7cf3?patient_id=${encodeURIComponent(
+          user.email
+        )}&question=${encodeURIComponent(input)}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
