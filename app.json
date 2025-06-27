@@ -35,7 +35,13 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "dodgerblue",
+          "dark" : {
+            "image": "./assets/images/splash-icon-dark.png",
+            "imageWidth": 200,
+            "resizeMode": "contain",
+            "backgroundColor": "black"
+          }
         }
       ],
       "expo-font",
