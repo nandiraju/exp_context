@@ -36,6 +36,15 @@ const ChatUI = () => {
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
 
+    // Add typing indicator
+    const typingMessage = {
+      id: `${timestamp}-typing`,
+      text: "Typing...",
+      sender: "bot",
+      isTyping: true,
+    };
+    setMessages((prev) => [...prev, typingMessage]);
+
     try {
       const response = await fetch(
         `https://n8n.expertopinion.me/webhook/83e0e2d4-bfa1-4f9e-b0e7-1eef7a1f7cf3?patient_id=${encodeURIComponent(
@@ -55,9 +64,24 @@ const ChatUI = () => {
         sender: "bot",
       };
 
-      setMessages((prev) => [...prev, botMessage]);
+      setMessages(
+        (prev) =>
+          prev
+            .filter((msg) => msg.id !== typingMessage.id) // remove typing
+            .concat(botMessage) // add actual bot response
+      );
     } catch (err) {
       console.error("Error sending message:", err);
+
+      setMessages((prev) =>
+        prev
+          .filter((msg) => msg.id !== typingMessage.id)
+          .concat({
+            id: `${timestamp}-error`,
+            text: "Error contacting server.",
+            sender: "bot",
+          })
+      );
     }
   };
 
@@ -69,7 +93,9 @@ const ChatUI = () => {
           item.sender === "user" ? styles.user : styles.bot,
         ]}
       >
-        <Text>{item.text}</Text>
+        <Text style={{ fontStyle: item.isTyping ? "italic" : "normal" }}>
+          {item.text}
+        </Text>
       </View>
     ),
     []
