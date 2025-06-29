@@ -41,14 +41,16 @@ const Settings = () => {
     // Clear user data and access token
   }
   return (
-    <View className="flex-1 justify-center items-center bg-blue-50 px-5">
+    <View className="flex-1 justify-center items-center bg-gray-50 px-5">
       <View className="flex-col items-center justify-center bg-blue-100 rounded-xl p-5 w-full">
         <SvgUri
           width="60"
           height="60"
           uri="https://www.svgrepo.com/show/526588/logout-3.svg"
         />
-        <Text className="text-center text-gray-400 my-5">Logout of you</Text>
+        <Text className="text-center text-gray-400 my-5">
+          Logout from the app
+        </Text>
         <UIButton
           className="bg-blue-500 p-4 rounded-md w-full mx-auto justify-center items-center shadow-md"
           title="Sign Out"
@@ -63,8 +65,8 @@ const Settings = () => {
           uri="https://www.svgrepo.com/show/526508/clipboard-remove.svg"
         />
         <Text className="text-center text-gray-400 my-5">
-          Deleting your account will remove all your data.{"\n"} You will need
-          to re-register again
+          Deleting your account will remove all your data. You will need to
+          re-register again
         </Text>
         <UIButton
           className="bg-red-500 p-4 rounded-md w-full mx-auto justify-center items-center shadow-md"
