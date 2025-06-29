@@ -67,7 +67,7 @@ export default function Welcome() {
           <VSpace gap={20} />
           <HeadingDivider
             iconName="albums-outline"
-            title="Trending in cancer"
+            title="Trending"
             onRightButton={() => {
               router.push("/news_screen");
             }}
