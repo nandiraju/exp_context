@@ -1,50 +1,53 @@
-# Welcome to your Expo app 👋
+## iOS
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+eas build --platform ios --profile production --local
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```json
+{
+  "build": {
+    "production": {
+      "ios": {
+        "distribution": "app-store",
+        "simulator": false,
+        "enterpriseProvisioning": "universal", // optional
+        "autoIncrement": true
+      }
+    }
+  }
+}
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## iOS Notes ---
 
-## Learn more
+### Removed .expo files
 
-To learn more about developing your project with Expo, look at the following resources:
+rm -rf .expo
+eas init
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Android ------
 
-## Join the community
+```sh
+eas build --platform android --profile production --local
+eas build --platform android --profile production
+```
 
-Join our community of developers creating universal apps.
+## clearing cache
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+eas build --platform android --profile production --local --clear-cache
+
+## KeyStore -----
+
+```sh
+keytool -genkeypair -v \
+ -keystore osakhi.jks \
+ -keyalg RSA -keysize 2048 -validity 10000 \
+ -alias osakhi
+```
+
+## Settimg Android SDK -----
+
+```sh
+echo 'export ANDROID_HOME=/Users/srikanthnandiraju/Library/Android/sdk' >> ~/.bash_profile
+echo 'export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$PATH' >> ~/.bash_profile
+source ~/.bash_profile
+```
