@@ -54,7 +54,7 @@ export default function Layout() {
             },
           }}
         />
-        <Drawer.Screen
+        {/* <Drawer.Screen
           name="Medications" // This is the name of the page and must match the url from root
           options={{
             drawerLabel: "Medications",
@@ -69,7 +69,7 @@ export default function Layout() {
               );
             },
           }}
-        />
+        /> */}
 
         <Drawer.Screen
           name="ChatPage" // This is the name of the page and must match the url from root

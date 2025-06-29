@@ -24,10 +24,10 @@ const WorkoutScreen = () => {
     },
     {
       id: "3",
-      title: "Medications",
+      title: "Chat",
       type: "Cardio",
-      icon: <Ionicons name="medkit-outline" size={40} color="#fff" />,
-      description: "Add and track your medications",
+      icon: <Ionicons name="chatbubble-outline" size={40} color="#fff" />,
+      description: "Chat with OSakhi",
       gradientColors: ["#F97316", "#EA580C", "#DC2626"],
     },
   ];
@@ -43,7 +43,7 @@ const WorkoutScreen = () => {
         router.push("/pages/Reminders");
         break;
       case "3":
-        router.push("/pages/Medications");
+        router.push("/pages/ChatPage");
         break;
       default:
         break;

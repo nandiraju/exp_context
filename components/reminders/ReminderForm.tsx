@@ -40,6 +40,11 @@ export default function ReminderForm({
 
   const handleSubmit = () => {
     //onSubmit({ title, description, date });
+    const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/;
+    if (!dateRegex.test(date.trim())) {
+      alert("Please enter a valid date in MM/DD/YYYY format.");
+      return;
+    }
     onSubmit({ ...initialData, title, description, date });
     setTitle("");
     setDescription("");
@@ -93,7 +98,7 @@ export default function ReminderForm({
               iconName="edit-calendar"
               iconSize={20}
               style={{ width: "80%", height: 45 }}
-              placeholder="Date"
+              placeholder="MM/DD/YYYY"
               value={date}
               onChangeText={setDate}
             />

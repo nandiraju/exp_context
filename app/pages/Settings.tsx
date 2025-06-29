@@ -49,7 +49,11 @@ const Settings = () => {
           uri="https://www.svgrepo.com/show/526588/logout-3.svg"
         />
         <Text className="text-center text-gray-400 my-5">Logout of you</Text>
-        <UIButton title="Sign Out" onPress={() => handleSignOut()} />
+        <UIButton
+          className="bg-blue-500 p-4 rounded-md w-full mx-auto justify-center items-center shadow-md"
+          title="Sign Out"
+          onPress={() => handleSignOut()}
+        />
       </View>
       <VSpace gap={56} />
       <View className="flex-col items-center justify-center bg-red-100 rounded-xl p-5 w-full mx-5">
@@ -63,7 +67,7 @@ const Settings = () => {
           to re-register again
         </Text>
         <UIButton
-          className="bg-red-500 p-4 rounded-md w-[200px] mx-auto justify-center items-center shadow-md"
+          className="bg-red-500 p-4 rounded-md w-full mx-auto justify-center items-center shadow-md"
           title="Delete Account"
           onPress={() => handleDeleteAccount()}
         />

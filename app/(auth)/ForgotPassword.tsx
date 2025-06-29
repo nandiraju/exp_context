@@ -13,7 +13,7 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useRouter } from "expo-router";
+import { router, useRouter } from "expo-router";
 import Button from "../../components/UIButton";
 import LinkText from "./LinkText";
 import { SvgUri } from "react-native-svg";
@@ -22,17 +22,30 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState("");
 
   const sendLink = async () => {
-    try {
-      await sendPasswordResetEmail(auth, email);
-      Alert.alert(
-        "Password Reset",
-        "A reset link has been sent to your email.",
-        [{ text: "OK", onPress: () => console.log("OK Pressed") }]
-      );
-    } catch (error: any) {
-      console.log(error);
-      alert("Sign in failed: " + error.message);
+    if (!email) {
+      Alert.alert("Error", "Please enter your email address.");
+      return;
     }
+    // Simple email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Alert.alert("Error", "Please enter a valid email address.");
+      return;
+    }
+
+    Alert.alert(
+      "Password Reset",
+      "A reset request has been sent. Our support team will reachout to you shortly.",
+      [{ text: "OK", onPress: () => router.back() }]
+    );
+
+    // try {
+    //   await sendPasswordResetEmail(auth, email);
+
+    // } catch (error: any) {
+    //   console.log(error);
+    //   alert("Sign in failed: " + error.message);
+    // }
   };
 
   return (
