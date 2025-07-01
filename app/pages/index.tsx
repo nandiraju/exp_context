@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
+  Alert,
 } from "react-native";
 import React, { use, useEffect } from "react";
 import NewsCard from "@/components/NewsCard";
@@ -15,13 +16,22 @@ import { HeadingDivider } from "@/components/HeadingDivider";
 import { Button } from "@react-navigation/elements";
 import { router } from "expo-router";
 import VSpace from "@/components/VSpace";
+import { documentsAtom } from "@/stores/SimpleStorage";
+import { useAtom } from "jotai";
 
 export default function Welcome() {
+  const [documents] = useAtom(documentsAtom);
+
   const handleCardPress = (data: any) => {
     console.log("Pressed card:", data.title);
   };
+
   const handleOnPress = (data: any) => {
     console.log(data);
+    // if (documents.length === 0) {
+    //   Alert.alert("First upload your documents to interact with OSakhi");
+    //   return;
+    // }
     router.push(data.screen);
   };
 
@@ -60,8 +70,8 @@ export default function Welcome() {
           />
           <OSakhiCard handleOnPress={handleOnPress} />
           <HeadingDivider
-            iconName="medical-outline"
-            title="Start your health journey"
+            iconName="document-outline"
+            title="Start your interaction"
           />
           <MenuScreen />
           <VSpace gap={20} />

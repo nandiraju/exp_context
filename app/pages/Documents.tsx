@@ -30,8 +30,8 @@ const Documents = () => {
         ListEmptyComponent={() => (
           <View className="h-[70vh] items-center justify-center px-4">
             <Ionicons name="albums-outline" size={100} color="dodgerblue" />
-            <Text className="text-gray-500 mt-4 text-lg font-semibold">
-              No documents found. {"\n"}Start uploading some!
+            <Text className="text-gray-500 mt-4 text-lg font-semibold text-center">
+              No documents found. {"\n"}Start uploading some to start chatting!
             </Text>
           </View>
         )}

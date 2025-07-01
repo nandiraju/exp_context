@@ -35,11 +35,11 @@ const OSakhiCard = ({ handleOnPress }: any) => {
           size={30}
           onPress={() => handleOnPress({ screen: "documents" })}
         /> */}
-        <IconButton
+        {/* <IconButton
           iconName="videocam-outline"
           size={30}
           onPress={() => handleClick()}
-        />
+        /> */}
       </View>
     </View>
   );

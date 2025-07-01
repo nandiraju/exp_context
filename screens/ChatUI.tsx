@@ -1,7 +1,8 @@
-import { userAtom } from "@/stores/SimpleStorage";
+import { flaggedItemsAtom, userAtom } from "@/stores/SimpleStorage";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { useAtom } from "jotai";
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import {
   View,
   Text,
@@ -21,6 +22,12 @@ const ChatUI = () => {
   const flatListRef = useRef(null);
 
   const [user] = useAtom(userAtom); // Assuming you have a userAtom to get user info
+  const [flagged, setFlagged] = useAtom(flaggedItemsAtom);
+
+  useEffect(() => {
+    // Scroll to bottom when messages change
+    console.log("Found flagged items to report ", flagged);
+  }, []);
 
   const scrollToBottom = () => {
     flatListRef.current?.scrollToEnd({ animated: true });
@@ -103,6 +110,10 @@ const ChatUI = () => {
           <Pressable
             onPress={() => {
               Alert.alert("Thanks for the feedback.");
+              setFlagged([
+                ...(Array.isArray(flagged) ? flagged : []),
+                { id: item.id, text: item.text },
+              ]);
             }}
           >
             <View className="flex-row items-center justify-end mt-2 w-full rounded-full bg-white px-4 py-2">

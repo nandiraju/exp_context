@@ -35,3 +35,9 @@ export const documentsAtom = atomWithStorage<Item[]>(
   [], // default empty list
   createJSONStorage(() => AsyncStorage)
 );
+
+export const flaggedItemsAtom = atomWithStorage<Item[]>(
+  "flagged_list",
+  [], // default empty list
+  createJSONStorage(() => AsyncStorage)
+);

@@ -1,10 +1,20 @@
 import React, { use } from "react";
-import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  Alert,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GenericCard, { CardData } from "./CardWithIcon";
 import { router } from "expo-router";
+import { documentsAtom } from "@/stores/SimpleStorage";
+import { useAtom } from "jotai";
 
 const WorkoutScreen = () => {
+  const [documents] = useAtom(documentsAtom);
+
   const workoutCards: CardData[] = [
     {
       id: "1",
