@@ -1,4 +1,5 @@
 import { userAtom } from "@/stores/SimpleStorage";
+import { Ionicons } from "@expo/vector-icons";
 import { useAtom } from "jotai";
 import React, { useState, useRef, useCallback } from "react";
 import {
@@ -10,6 +11,8 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
+  Alert,
 } from "react-native";
 
 const ChatUI = () => {
@@ -96,6 +99,18 @@ const ChatUI = () => {
         <Text style={{ fontStyle: item.isTyping ? "italic" : "normal" }}>
           {item.text}
         </Text>
+        {item.sender === "bot" && !item.isTyping && (
+          <Pressable
+            onPress={() => {
+              Alert.alert("Thanks for the feedback.");
+            }}
+          >
+            <View className="flex-row items-center justify-end mt-2 w-full rounded-full bg-white px-4 py-2">
+              <Ionicons name="flag-outline" size={20} color="red" />
+              <Text className="ml-2 text-red-500">Flag this response</Text>
+            </View>
+          </Pressable>
+        )}
       </View>
     ),
     []
