@@ -8,7 +8,7 @@ import Sandbox from "@/screens/Sandbox";
 export default function Index() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <SignInScreen />
       {/* <Sandbox /> */}
       <NetworkChecker />
