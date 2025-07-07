@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { NoteProvider } from "../context/NotesContext";
+// import { NoteProvider } from "../context/NotesContext";
 import "../global.css";
 import { Text } from "react-native";
 

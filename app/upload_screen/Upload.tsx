@@ -8,6 +8,8 @@ import {
   StyleSheet,
   Alert,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import * as DocumentPicker from "expo-document-picker";
 import IconInput from "@/components/IconInput";
@@ -114,39 +116,44 @@ export default function UploadScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      {/* <SvgUri
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      className="flex-1"
+    >
+      <View style={styles.container}>
+        {/* <SvgUri
         width="100"
         height="100"
         className="flex-row justify-center items-center mb-5"
         uri="https://www.svgrepo.com/show/499790/upload.svg"
       /> */}
 
-      <Ionicons name="cloud-upload-outline" size={80} color="#007AFF" />
+        <Ionicons name="cloud-upload-outline" size={80} color="#007AFF" />
 
-      <Text style={styles.title}>Upload Document</Text>
+        <Text style={styles.title}>Upload Document</Text>
 
-      <IconInput
-        placeholder="Enter a title for the document"
-        iconName="upload-file"
-        iconSize={20}
-        style={{ width: "80%", height: 50 }}
-        value={documentName}
-        onChangeText={setDocumentName}
-      />
-      <TouchableOpacity
-        style={[styles.button, uploading && styles.buttonDisabled]}
-        onPress={pickDocument}
-        disabled={uploading}
-      >
-        <Text style={styles.buttonText}>Pick Document</Text>
-      </TouchableOpacity>
-      {uploadStatus ? (
-        <View style={styles.statusContainer}>
-          <Text style={styles.statusText}>{uploadStatus}</Text>
-        </View>
-      ) : null}
-    </View>
+        <IconInput
+          placeholder="Enter a title for the document"
+          iconName="upload-file"
+          iconSize={20}
+          style={{ width: "80%", height: 50 }}
+          value={documentName}
+          onChangeText={setDocumentName}
+        />
+        <TouchableOpacity
+          style={[styles.button, uploading && styles.buttonDisabled]}
+          onPress={pickDocument}
+          disabled={uploading}
+        >
+          <Text style={styles.buttonText}>Pick Document</Text>
+        </TouchableOpacity>
+        {uploadStatus ? (
+          <View style={styles.statusContainer}>
+            <Text style={styles.statusText}>{uploadStatus}</Text>
+          </View>
+        ) : null}
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
