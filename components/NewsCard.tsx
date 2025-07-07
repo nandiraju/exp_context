@@ -1,8 +1,8 @@
 import * as WebBrowser from "expo-web-browser";
-import { useAtom } from "jotai";
-import React from "react";
+import { useAtom, useAtomValue } from "jotai";
+import React, { useEffect } from "react";
 import { FlatList, Pressable, Text, Image, View } from "react-native";
-import { newsAtom } from "@/stores/ApiData";
+import { newsAtom, imagesAtom } from "@/stores/ApiData";
 
 type NewsCardProps = {
   count: number;
@@ -10,7 +10,7 @@ type NewsCardProps = {
 
 const NewsCard = ({ count }: NewsCardProps) => {
   const [news, setnews] = useAtom(newsAtom);
-
+  const images = useAtomValue(imagesAtom);
   if (!news || news.length === 0) {
     return (
       <Text className="text-center text-gray-400 mt-10">
@@ -18,6 +18,13 @@ const NewsCard = ({ count }: NewsCardProps) => {
       </Text>
     );
   }
+
+  const getRandomImage = () => {
+    if (images.results.length === 0) return null;
+    const randomIndex = Math.floor(Math.random() * images.results.length);
+    console.log("Random Image Index:", randomIndex);
+    return images.results[randomIndex].urls.small;
+  };
 
   const handleClick = (url: string) => {
     WebBrowser.openBrowserAsync(url);
@@ -40,9 +47,7 @@ const NewsCard = ({ count }: NewsCardProps) => {
             <View className="flex-row mt-3 gap-3 items-start">
               <Image
                 source={{
-                  uri: item.image
-                    ? item.image
-                    : "https://via.placeholder.com/100?text=No+Image",
+                  uri: item.image ? item.image : getRandomImage(),
                 }}
                 className="w-[100px] h-[100px] rounded-xl"
                 resizeMode="cover"

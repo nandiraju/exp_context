@@ -82,7 +82,7 @@ export default function WelcomeScreen() {
               router.push("/news_screen");
             }}
           />
-          {/* <NewsCard count={5} /> */}
+          <NewsCard count={5} />
           <VSpace gap={20} />
         </View>
       }

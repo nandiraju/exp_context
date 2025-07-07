@@ -10,8 +10,10 @@ import { useAtom } from "jotai";
 import { itemsListAtom } from "@/stores/SimpleStorage";
 import { randomUUID } from "expo-crypto";
 import ReminderForm from "./ReminderForm";
-import UIButton from "../UIButton";
+// import UIButton from "../UIButton";
+import UIButton from "@/components/lib/UIButton";
 import { Ionicons } from "@expo/vector-icons";
+import LottieView from "lottie-react-native";
 
 export default function RemindersList() {
   const [todos, setTodos] = useAtom(itemsListAtom);
@@ -82,11 +84,22 @@ export default function RemindersList() {
         )}
         ListEmptyComponent={() => (
           <View className="h-[70vh] items-center justify-center px-4">
-            <Ionicons
+            <LottieView
+              autoPlay
+              speed={0.5}
+              style={{
+                width: 200,
+                height: 200,
+                // backgroundColor: "#eee",
+              }}
+              // Find more Lottie files at https://lottiefiles.com/featured
+              source={require("@/assets/lottie/reminders.json")}
+            />
+            {/* <Ionicons
               name="notifications-outline"
               size={100}
               color="dodgerblue"
-            />
+            /> */}
             <Text className="text-gray-500 mt-4 text-lg font-semibold">
               No reminders found. {"\n"}Start creating some!
             </Text>
@@ -94,13 +107,29 @@ export default function RemindersList() {
         )}
       />
 
-      <UIButton
+      {/* <UIButton
         title="Create"
         onPress={() => {
           setEditingId(null);
           setSelecteditem({ title: "", description: "", date: "" });
           setShowForm(true);
         }}
+      /> */}
+
+      <UIButton
+        text="Create Reminder"
+        icon={Ionicons}
+        iconName="create-outline"
+        iconSize={20}
+        iconPosition="left"
+        onPress={() => {
+          setEditingId(null);
+          setSelecteditem({ title: "", description: "", date: "" });
+          setShowForm(true);
+        }}
+        filled
+        color="dodgerblue"
+        style={{ marginTop: 10, height: 50, width: "auto", margin: "auto" }}
       />
 
       <ReminderForm
