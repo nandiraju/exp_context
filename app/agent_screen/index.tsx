@@ -5,23 +5,31 @@ import UIButton from "@/components/UIButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
 import { router } from "expo-router";
+import { userAtom } from "@/stores/SimpleStorage";
+import { useAtom } from "jotai";
+import { Ionicons } from "@expo/vector-icons";
+import IconButton from "@/components/IconButton";
 
 export default function AgentScreen() {
+  const user = useAtom(userAtom);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
+      <View className="flex-row items-start">
+        <IconButton
+          iconName="arrow-back-outline"
+          size={35}
+          onPress={() => router.back()}
+        />
+      </View>
+
       <WebView
         style={styles.container}
         //source={{ uri: "https://ai.nandiraju.com/" }}
-        source={{ uri: "https://osakhi-agent.vercel.app/" }}
+        source={{
+          uri: `https://osakhi-production-avatar.vercel.app/avatar?token=${user?.email}`,
+        }}
         allowsInlineMediaPlayback
         mediaPlaybackRequiresUserAction={false}
-      />
-      <UIButton
-        className="bg-blue-500 p-4 rounded-md w-[100px] mx-auto justify-center items-center shadow-md my-4"
-        title={"Close"}
-        onPress={() => {
-          router.back();
-        }}
       />
     </SafeAreaView>
   );

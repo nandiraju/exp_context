@@ -4,7 +4,7 @@ import TestingScreen from "../app_screens/TestingScreen";
 import ButtonsTest from "../app_screens/ButtonsTest";
 
 export default function Welcome() {
-  // return <WelcomeScreen />;
+  return <WelcomeScreen />;
   // return <TestingScreen />;
-  return <ButtonsTest />;
+  // return <ButtonsTest />;
 }

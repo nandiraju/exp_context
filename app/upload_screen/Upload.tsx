@@ -15,6 +15,7 @@ import { documentsAtom, userAtom } from "@/stores/SimpleStorage";
 import { useAtom } from "jotai";
 import { randomUUID } from "expo-crypto";
 import { SvgUri } from "react-native-svg";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function UploadScreen() {
   const [uploading, setUploading] = useState(false);
@@ -114,12 +115,15 @@ export default function UploadScreen() {
 
   return (
     <View style={styles.container}>
-      <SvgUri
+      {/* <SvgUri
         width="100"
         height="100"
         className="flex-row justify-center items-center mb-5"
         uri="https://www.svgrepo.com/show/499790/upload.svg"
-      />
+      /> */}
+
+      <Ionicons name="cloud-upload-outline" size={80} color="#007AFF" />
+
       <Text style={styles.title}>Upload Document</Text>
 
       <IconInput
@@ -155,7 +159,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   title: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 20,

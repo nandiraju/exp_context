@@ -11,13 +11,13 @@ export default function GenericModal() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      <Button title="Close" onPress={() => router.back()} />
       <View className="flex-1">
         {ComponentToRender ? (
           <ComponentToRender />
         ) : (
           <Text>Unknown component</Text>
         )}
-        <Button title="Close" onPress={() => router.back()} />
       </View>
     </SafeAreaView>
   );

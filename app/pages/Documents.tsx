@@ -1,14 +1,15 @@
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import UploadScreen from "@/app/upload_screen/Upload";
-import UIButton from "@/components/UIButton";
+// import UIButton from "@/components/UIButton";
 import { router } from "expo-router";
 import { useAtom } from "jotai";
 import { documentsAtom } from "@/stores/SimpleStorage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { SvgUri } from "react-native-svg";
-
+import LottieView from "lottie-react-native";
+import UIButton from "@/components/lib/UIButton";
 import dayjs from "@/helpers/Helper";
 
 const Documents = () => {
@@ -29,18 +30,39 @@ const Documents = () => {
         keyExtractor={(item, index) => item?.id?.toString() || index.toString()}
         ListEmptyComponent={() => (
           <View className="h-[70vh] items-center justify-center px-4">
-            <Ionicons name="albums-outline" size={100} color="dodgerblue" />
+            <LottieView
+              autoPlay
+              style={{
+                width: 300,
+                height: 300,
+                // backgroundColor: "#eee",
+              }}
+              // Find more Lottie files at https://lottiefiles.com/featured
+              source={require("@/assets/lottie/docs.json")}
+            />
+            {/* <Ionicons name="albums-outline" size={100} color="dodgerblue" /> */}
             <Text className="text-gray-500 mt-4 text-lg font-semibold text-center">
               No documents found. {"\n"}Start uploading some to start chatting!
             </Text>
           </View>
         )}
       />
-      <UIButton
+      {/* <UIButton
         title="Upload Documents"
         onPress={() => {
           router.push("/upload_screen");
         }}
+      /> */}
+      <UIButton
+        text=" Upload Documents"
+        icon={Ionicons}
+        iconName="cloud-upload-outline"
+        iconSize={20}
+        iconPosition="left"
+        onPress={() => router.push("/upload_screen")}
+        filled
+        color="dodgerblue"
+        style={{ marginTop: 10, height: 50, width: "auto", margin: "auto" }}
       />
       {/* <UploadScreen /> */}
     </View>
