@@ -23,13 +23,13 @@ const SignUpScreen = () => {
   const [loading, setLoading] = useState(false);
 
   const createUser = async (
-    firstName: string,
-    lastName: string,
     email: string,
-    password: string
+    password: string,
+    firstName: string,
+    lastName: string
   ) => {
     const response = await fetch(
-      // "http://localhost:3000/api/auth/signup",
+      //"http://localhost:3000/api/auth/signup",
       "https://mobile-backend-jpqx.vercel.app/api/auth/signup",
       {
         method: "POST",

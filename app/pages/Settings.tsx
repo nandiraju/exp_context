@@ -48,7 +48,7 @@ const Settings = () => {
           height="60"
           uri="https://www.svgrepo.com/show/526588/logout-3.svg"
         />
-        <Text className="text-center text-gray-400 my-5">
+        <Text className="text-center text-gray-400 my-5 font-poppins">
           Logout from the app
         </Text>
         <UIButton
@@ -64,7 +64,7 @@ const Settings = () => {
           height="60"
           uri="https://www.svgrepo.com/show/526508/clipboard-remove.svg"
         />
-        <Text className="text-center text-gray-400 my-5">
+        <Text className="text-center text-gray-400 my-5 font-poppins">
           Deleting your account will remove all your data. You will need to
           re-register again
         </Text>

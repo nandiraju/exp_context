@@ -53,6 +53,7 @@ const SignInScreen = () => {
 
     try {
       const response = await fetch(
+        //"http://localhost:3000/api/auth/login",
         "https://mobile-backend-jpqx.vercel.app/api/auth/login",
         {
           method: "POST",
@@ -70,7 +71,8 @@ const SignInScreen = () => {
       // Store access token in global state
       if (data?.token) {
         setAccessToken(data.token);
-        setUser({ email }); // Store user email as string
+        setUser(data); // Store user email as string
+        console.log("User signed in:", data);
         router.replace("/pages"); // or your authenticated screen
       } else {
         throw new Error("No access token returned");

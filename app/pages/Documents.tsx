@@ -41,7 +41,7 @@ const Documents = () => {
               source={require("@/assets/lottie/docs.json")}
             />
             {/* <Ionicons name="albums-outline" size={100} color="dodgerblue" /> */}
-            <Text className="text-gray-500 mt-4 text-lg font-semibold text-center">
+            <Text className="text-gray-500 mt-4 text-lg  text-center font-poppins">
               No documents found. {"\n"}Start uploading some to start chatting!
             </Text>
           </View>
@@ -62,7 +62,12 @@ const Documents = () => {
         onPress={() => router.push("/upload_screen")}
         filled
         color="dodgerblue"
-        style={{ marginTop: 10, height: 50, width: "auto", margin: "auto" }}
+        style={{
+          marginTop: 10,
+          height: 50,
+          width: "auto",
+          margin: "auto",
+        }}
       />
       {/* <UploadScreen /> */}
     </View>

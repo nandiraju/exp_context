@@ -21,7 +21,7 @@ const WorkoutScreen = () => {
       title: "Documents",
       type: "Bodyweight",
       icon: <Ionicons name="document-outline" size={40} color="#fff" />,
-      description: "Upload your documents ",
+      description: "Upload your documents and chat with OSakhi",
       gradientColors: ["#8B5CF6", "#A855F7", "#C084FC"],
     },
     {
@@ -37,7 +37,7 @@ const WorkoutScreen = () => {
       title: "Chat",
       type: "Cardio",
       icon: <Ionicons name="chatbubble-outline" size={40} color="#fff" />,
-      description: "Chat with OSakhi",
+      description: "Chat with OSakhi and get answers instantly",
       gradientColors: ["#F97316", "#EA580C", "#DC2626"],
     },
   ];

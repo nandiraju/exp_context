@@ -95,11 +95,13 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#FFFFFF",
     marginBottom: 4,
+    fontFamily: "PoppinsSemiBold", // Ensure this matches your Tailwind config
   },
   description: {
-    fontSize: 14,
+    fontSize: 16,
     color: "rgba(255, 255, 255, 0.8)",
-    lineHeight: 15,
+    lineHeight: 17,
+    fontFamily: "PoppinsRegular", // Ensure this matches your Tailwind config
   },
 });
 

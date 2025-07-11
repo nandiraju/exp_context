@@ -9,6 +9,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ["PoppinsRegular"],
+        "poppins-semibold": "PoppinsSemiBold",
+      },
       boxShadow: {
         sm: "0 1px 1.5px rgba(0, 0, 0, 0.1)",
         md: "0 3px 4.65px rgba(0, 0, 0, 0.15)",

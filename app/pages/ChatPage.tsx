@@ -24,8 +24,8 @@ const ChatPage = () => {
             // Find more Lottie files at https://lottiefiles.com/featured
             source={require("@/assets/lottie/chat.json")}
           />
-          <Text className="text-2xl font-semibold text-center  p-5">
-            Please upload your documents to start chatting with OSakhi.
+          <Text className="text-gray-500 mt-4 text-lg  text-center font-poppins">
+            Please upload your documents {"\n"}to start chatting!
           </Text>
         </View>
       ) : (

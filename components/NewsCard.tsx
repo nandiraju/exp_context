@@ -40,7 +40,10 @@ const NewsCard = ({ count }: NewsCardProps) => {
             onPress={() => handleClick(item.link)}
             className="bg-white mx-5 my-2 border border-gray-200 rounded-xl mb-4 p-4 pb-7"
           >
-            <Text className="text-lg font-semibold text-gray-800">
+            <Text
+              numberOfLines={2}
+              className="text-lg font-semibold font-poppins-semibold text-gray-800 leading-tight"
+            >
               {item.title}
             </Text>
 
@@ -56,7 +59,7 @@ const NewsCard = ({ count }: NewsCardProps) => {
                 <Text
                   numberOfLines={5}
                   ellipsizeMode="tail"
-                  className="text-sm text-gray-600"
+                  className="text-sm text-gray-600 font-poppins"
                 >
                   {item.content}
                 </Text>

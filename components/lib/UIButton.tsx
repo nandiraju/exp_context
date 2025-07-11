@@ -142,7 +142,8 @@ const styles = StyleSheet.create({
     margin: 4,
   },
   text: {
-    fontSize: 16,
+    fontSize: 14,
     textAlign: "center",
+    fontFamily: "PoppinsRegular", // Ensure this matches your Tailwind config
   },
 });

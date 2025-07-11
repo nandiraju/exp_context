@@ -36,28 +36,6 @@ export default function WelcomeScreen() {
   };
 
   return (
-    // <ScrollView className="flex-1 bg-snow-50">
-    //   <View className="h-[20px] w-full"></View>
-    //   <HeadingDivider iconName="albums-outline" title="Interact with OSakhi" />
-    //   <OSakhiCard handleOnPress={handleOnPress} />
-    //   <HeadingDivider
-    //     iconName="medical-outline"
-    //     title="Start your health journey"
-    //   />
-    //   <MenuScreen />
-    //   <VSpace gap={20} />
-    //   <HeadingDivider
-    //     iconName="albums-outline"
-    //     title="Trending in cancer"
-    //     onRightButton={() => {
-    //       console.log("Right button pressed");
-    //       // router.push("/modal?type=forgot");
-    //       router.push("/news_screen");
-    //     }}
-    //   />
-    //   <NewsCard count={5} />
-    //   <VSpace gap={20} />
-    // </ScrollView>
     <FlatList
       data={[]} // No main data — we're just rendering headers + NewsCard
       renderItem={null}

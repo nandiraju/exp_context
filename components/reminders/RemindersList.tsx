@@ -69,7 +69,9 @@ export default function RemindersList() {
           <View className="flex-column bg-white rounded-lg p-4 mb-3 shadow-sm overflow-hidden">
             <View className="absolute top-[-100] right-[-125] w-64 h-64 bg-blue-500/5 rounded-full" />
             <View className="flex-1 flex-column rounded-md p-4">
-              <Text className="font-semibold">{item.title}</Text>
+              <Text className="font-semibold font-poppins-semibold">
+                {item.title}
+              </Text>
               <Text className="text-gray-600 mt-2">{item.description}</Text>
             </View>
             <View className="flex-row items-center pt-2 mt-4 justify-between border-t-[0.3px] border-gray-300">
@@ -100,8 +102,8 @@ export default function RemindersList() {
               size={100}
               color="dodgerblue"
             /> */}
-            <Text className="text-gray-500 mt-4 text-lg font-semibold">
-              No reminders found. {"\n"}Start creating some!
+            <Text className="text-gray-500 text-lg  text-center font-poppins">
+              No reminders yet. {"\n"}Start creating your reminders!
             </Text>
           </View>
         )}

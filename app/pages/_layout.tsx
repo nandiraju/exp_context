@@ -2,10 +2,19 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
 import { Ionicons } from "@expo/vector-icons";
 
+const ICON_SIZE = 30; // Default icon size
+const ICON_COLOR = "dodgerblue"; // Default icon color
 export default function Layout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Drawer>
+      <Drawer
+        screenOptions={{
+          drawerLabelStyle: {
+            fontSize: 18,
+            fontFamily: "PoppinsRegular", // Ensure this matches your Tailwind config
+          },
+        }}
+      >
         <Drawer.Screen
           name="index" // This is the name of the page and must match the url from root
           options={{
@@ -15,8 +24,8 @@ export default function Layout() {
               return (
                 <Ionicons
                   name={"home-outline"}
-                  size={20}
-                  color={"dodgerblue"}
+                  size={ICON_SIZE}
+                  color={ICON_COLOR}
                 />
               );
             },
@@ -31,8 +40,8 @@ export default function Layout() {
               return (
                 <Ionicons
                   name={"document-outline"}
-                  size={20}
-                  color={"dodgerblue"}
+                  size={ICON_SIZE}
+                  color={ICON_COLOR}
                 />
               );
             },
@@ -47,8 +56,8 @@ export default function Layout() {
               return (
                 <Ionicons
                   name={"notifications-outline"}
-                  size={20}
-                  color={"dodgerblue"}
+                  size={ICON_SIZE}
+                  color={ICON_COLOR}
                 />
               );
             },
@@ -80,8 +89,8 @@ export default function Layout() {
               return (
                 <Ionicons
                   name={"chatbubble-outline"}
-                  size={20}
-                  color={"dodgerblue"}
+                  size={ICON_SIZE}
+                  color={ICON_COLOR}
                 />
               );
             },
@@ -96,8 +105,8 @@ export default function Layout() {
               return (
                 <Ionicons
                   name={"settings-outline"}
-                  size={20}
-                  color={"dodgerblue"}
+                  size={ICON_SIZE}
+                  color={ICON_COLOR}
                 />
               );
             },
