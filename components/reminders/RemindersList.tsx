@@ -145,5 +145,5 @@ export default function RemindersList() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 24, backgroundColor: "#f5f5f5" },
+  container: { flex: 1, padding: 24, backgroundColor: "#FDF5E6" },
 });

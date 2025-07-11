@@ -22,7 +22,7 @@ const Documents = () => {
   }, [documents]);
 
   return (
-    <View className="flex-1 pb-10">
+    <View className="flex-1 pb-10" style={{ backgroundColor: "#FDF5E6" }}>
       <FlatList
         className="pt-4 px-4"
         data={documents || []}

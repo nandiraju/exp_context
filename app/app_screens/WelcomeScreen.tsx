@@ -37,10 +37,14 @@ export default function WelcomeScreen() {
 
   return (
     <FlatList
+      contentContainerStyle={{ backgroundColor: "red" }}
       data={[]} // No main data — we're just rendering headers + NewsCard
       renderItem={null}
       ListHeaderComponent={
-        <View className="flex-1 bg-snow-50">
+        <View
+          className="flex-1 bg-snow-50"
+          style={{ backgroundColor: "#FDF5E6" }}
+        >
           <View className="h-[20px] w-full" />
           <HeadingDivider
             iconName="albums-outline"

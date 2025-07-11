@@ -41,8 +41,11 @@ const Settings = () => {
     // Clear user data and access token
   }
   return (
-    <View className="flex-1 justify-center items-center bg-gray-50 px-5">
-      <View className="flex-col items-center justify-center bg-blue-100 rounded-xl p-5 w-full">
+    <View
+      className="flex-1 justify-center items-center bg-gray-50 px-5"
+      style={{ backgroundColor: "#FDF5E6" }}
+    >
+      <View className="flex-col items-center justify-center bg-white rounded-xl p-5 w-full">
         <SvgUri
           width="60"
           height="60"
@@ -58,7 +61,7 @@ const Settings = () => {
         />
       </View>
       <VSpace gap={56} />
-      <View className="flex-col items-center justify-center bg-red-100 rounded-xl p-5 w-full mx-5">
+      <View className="flex-col items-center justify-center bg-white rounded-xl p-5 w-full mx-5">
         <SvgUri
           width="60"
           height="60"
