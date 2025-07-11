@@ -103,7 +103,12 @@ const ChatUI = () => {
           item.sender === "user" ? styles.user : styles.bot,
         ]}
       >
-        <Text style={{ fontStyle: item.isTyping ? "italic" : "normal" }}>
+        <Text
+          style={{
+            fontFamily: "PoppinsRegular",
+            fontStyle: item.isTyping ? "italic" : "normal",
+          }}
+        >
           {item.text}
         </Text>
         {item.sender === "bot" && !item.isTyping && (
@@ -118,7 +123,9 @@ const ChatUI = () => {
           >
             <View className="flex-row items-center justify-end mt-2 w-full rounded-full bg-white px-4 py-2">
               <Ionicons name="flag-outline" size={20} color="red" />
-              <Text className="ml-2 text-red-500">Flag this response</Text>
+              <Text className="ml-2 text-red-500 font-poppins">
+                Flag this response
+              </Text>
             </View>
           </Pressable>
         )}
@@ -157,7 +164,15 @@ const ChatUI = () => {
           returnKeyType="send"
         />
         <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
-          <Text style={{ fontSize: 24, color: "#007AFF" }}>➤</Text>
+          <Text
+            style={{
+              fontSize: 24,
+              color: "#007AFF",
+              fontFamily: "PoppinsRegular",
+            }}
+          >
+            ➤
+          </Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -185,6 +200,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 2,
     elevation: 1,
+    fontFamily: "PoppinsRegular",
   },
   user: {
     backgroundColor: "#DCF8C6",
@@ -211,6 +227,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     fontSize: 16,
     marginRight: 8,
+    fontFamily: "PoppinsRegular",
   },
   sendButton: {
     padding: 8,

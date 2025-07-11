@@ -1,9 +1,16 @@
 import { WebView } from "react-native-webview";
 import Constants from "expo-constants";
 import { StyleSheet, View, Text } from "react-native";
+
+// Add this declaration to inform TypeScript about ReactNativeWebView on window
+declare global {
+  interface Window {
+    ReactNativeWebView?: any;
+  }
+}
 import UIButton from "@/components/UIButton";
 import { SafeAreaView } from "react-native-safe-area-context";
-import React from "react";
+import React, { useEffect } from "react";
 import { router } from "expo-router";
 import { documentsAtom, userAtom } from "@/stores/SimpleStorage";
 import { useAtom } from "jotai";
@@ -15,6 +22,19 @@ export default function AgentScreen() {
   const user = useAtom(userAtom);
   const [documents] = useAtom(documentsAtom);
   //const documents = [1, 2, 3]; // Temporary mock data for testing
+
+  useEffect(() => {
+    console.log("Is WebView bridge available?", !!window.ReactNativeWebView);
+  }, []);
+
+  const handleMessage = (event: any) => {
+    try {
+      const data = JSON.parse(event.nativeEvent.data);
+      console.log("PASSED OBJECT :", data);
+    } catch {
+      console.log("Raw message:", event.nativeEvent.data);
+    }
+  };
 
   return (
     <LinearGradient
@@ -43,12 +63,20 @@ export default function AgentScreen() {
             <WebView
               style={styles.container}
               bounces={false}
-              //source={{ uri: "https://ai.nandiraju.com/" }}
               source={{
-                uri: `https://osakhi-production-avatar.vercel.app/avatar?token=${user?.email}`,
+                // uri: `https://osakhi-production-avatar.vercel.app/avatar?token=${user?.email}`,
+                uri: `http://localhost:3000/bridge`,
               }}
               allowsInlineMediaPlayback
               mediaPlaybackRequiresUserAction={false}
+              onMessage={handleMessage}
+              javaScriptEnabled={true}
+              injectedJavaScript={`
+                // This script runs once the page loads
+                window.ReactNativeWebView = window.ReactNativeWebView || {};
+                true; // note: this is required for the injectedJavaScript to work properly on Android
+              `}
+              originWhitelist={["*"]}
             />
           </>
         )}
