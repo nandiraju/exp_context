@@ -16,12 +16,20 @@ import { SvgUri } from "react-native-svg";
 const SignUpScreen = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [vpassword, setVPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const createUser = async (email: string, password: string) => {
+  const createUser = async (
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
+  ) => {
     const response = await fetch(
+      // "http://localhost:3000/api/auth/signup",
       "https://mobile-backend-jpqx.vercel.app/api/auth/signup",
       {
         method: "POST",
@@ -29,8 +37,8 @@ const SignUpScreen = () => {
         body: JSON.stringify({
           email,
           password,
-          firstName: "fName",
-          lastName: "lName",
+          firstName,
+          lastName,
         }),
       }
     );
@@ -47,7 +55,7 @@ const SignUpScreen = () => {
   const signUp = async () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!email || !password || !vpassword) {
+    if (!email || !password || !vpassword || !firstName || !lastName) {
       Alert.alert("Error", "Please fill in all fields.");
       return;
     }
@@ -69,7 +77,7 @@ const SignUpScreen = () => {
 
     setLoading(true);
     try {
-      const user = await createUser(email, password);
+      const user = await createUser(email, password, firstName, lastName);
       console.log("User created:", user);
       router.replace("/pages");
     } catch (error: any) {
@@ -92,6 +100,26 @@ const SignUpScreen = () => {
           uri="https://www.svgrepo.com/show/223045/account.svg"
         />
         <Text className="mb-5 font-bold text-xl">Sign up</Text>
+
+        <View className="flex-row justify-between w-full px-5">
+          <IconInput
+            placeholder="First Name"
+            iconName="label"
+            iconSize={20}
+            style={{ height: 50, width: 122 }}
+            value={firstName}
+            onChangeText={setFirstName}
+          />
+          <IconInput
+            placeholder="Last Name"
+            iconName="label"
+            iconSize={20}
+            value={lastName}
+            iconColor="orange"
+            onChangeText={setLastName}
+            style={{ height: 50, width: 122 }}
+          />
+        </View>
 
         <IconInput
           placeholder="Email"
