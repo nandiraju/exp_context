@@ -10,7 +10,7 @@ export default function Layout() {
       <Drawer
         screenOptions={{
           drawerLabelStyle: {
-            fontSize: 18,
+            fontSize: 15,
             fontFamily: "PoppinsRegular", // Ensure this matches your Tailwind config
           },
         }}

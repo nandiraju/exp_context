@@ -16,20 +16,26 @@ import { documentsAtom, userAtom } from "@/stores/SimpleStorage";
 import { useAtom } from "jotai";
 import { Ionicons } from "@expo/vector-icons";
 import IconButton from "@/components/IconButton";
-import { LinearGradient } from "expo-linear-gradient";
+//import { LinearGradient } from "expo-linear-gradient";
 
 export default function AgentScreen() {
-  const user = useAtom(userAtom);
+  const [user] = useAtom(userAtom);
   const [documents] = useAtom(documentsAtom);
   //const documents = [1, 2, 3]; // Temporary mock data for testing
 
   useEffect(() => {
     console.log("Is WebView bridge available?", !!window.ReactNativeWebView);
+    console.log("User data:", user);
+    console.log(
+      `https://osakhi-sim-11labs.vercel.app/avatar?token=${user?.email}&name=${user?.firstName + " " + user?.lastName}`
+    );
   }, []);
 
   const handleMessage = (event: any) => {
     try {
       const data = JSON.parse(event.nativeEvent.data);
+      // alert(data);
+      // Add these items to the local storage and show a screen with the data
       console.log("PASSED OBJECT :", data);
     } catch {
       console.log("Raw message:", event.nativeEvent.data);
@@ -37,51 +43,52 @@ export default function AgentScreen() {
   };
 
   return (
-    <LinearGradient
-      colors={["#333333", "#000000"]} // blue-500 to blue-900
-      start={{ x: 0.5, y: 0 }}
-      end={{ x: 0.5, y: 1 }}
-      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-    >
-      <SafeAreaView style={{ flex: 1, width: "100%" }}>
-        <View className="flex-row items-start">
-          <IconButton
-            iconName="arrow-back-outline"
-            size={35}
-            onPress={() => router.back()}
-          />
+    // <LinearGradient
+    //   colors={["#000", "#333"]} // blue-500 to blue-900
+    //   start={{ x: 0.5, y: 0 }}
+    //   end={{ x: 0.5, y: 1 }}
+    //   style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+    // >
+    <SafeAreaView style={{ flex: 1, width: "100%", backgroundColor: "#000" }}>
+      <View className="flex-row items-start">
+        <IconButton
+          iconName="arrow-back-outline"
+          size={35}
+          onPress={() => router.back()}
+        />
+      </View>
+      {documents.length === 0 ? (
+        <View className="flex-1 items-center justify-center">
+          <Ionicons name="warning-outline" size={50} color="red" />
+          <Text className="text-white text-xl font-semibold p-5 text-center px-5">
+            Upload Documents to Interact with OSakhi
+          </Text>
         </View>
-        {documents.length === 0 ? (
-          <View className="flex-1 items-center justify-center">
-            <Ionicons name="warning-outline" size={50} color="red" />
-            <Text className="text-white text-xl font-semibold p-5 text-center px-5">
-              Upload Documents to Interact with OSakhi
-            </Text>
-          </View>
-        ) : (
-          <>
-            <WebView
-              style={styles.container}
-              bounces={false}
-              source={{
-                // uri: `https://osakhi-production-avatar.vercel.app/avatar?token=${user?.email}`,
-                uri: `http://localhost:3000/bridge`,
-              }}
-              allowsInlineMediaPlayback
-              mediaPlaybackRequiresUserAction={false}
-              onMessage={handleMessage}
-              javaScriptEnabled={true}
-              injectedJavaScript={`
+      ) : (
+        <>
+          <WebView
+            style={styles.container}
+            bounces={false}
+            source={{
+              // uri: `https://osakhi-production-avatar.vercel.app/avatar?token=${user?.email}`,
+              //https://osakhi-sim-11labs.vercel.app/
+              uri: `https://osakhi-sim-11labs.vercel.app/avatar?token=${user?.email}&name=${user?.firstName + " " + user?.lastName}`,
+            }}
+            allowsInlineMediaPlayback
+            mediaPlaybackRequiresUserAction={false}
+            onMessage={handleMessage}
+            javaScriptEnabled={true}
+            injectedJavaScript={`
                 // This script runs once the page loads
                 window.ReactNativeWebView = window.ReactNativeWebView || {};
                 true; // note: this is required for the injectedJavaScript to work properly on Android
               `}
-              originWhitelist={["*"]}
-            />
-          </>
-        )}
-      </SafeAreaView>
-    </LinearGradient>
+            originWhitelist={["*"]}
+          />
+        </>
+      )}
+    </SafeAreaView>
+    // </LinearGradient>
   );
 }
 

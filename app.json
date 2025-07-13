@@ -8,14 +8,19 @@
     "scheme": "osakhi",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "ios": {
+    "ios": {     
       "supportsTablet": true,
       "bundleIdentifier": "com.nandiraju.osakhi",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSMicrophoneUsageDescription": "This app uses the microphone to record audio."
       }
     },
     "android": {
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
+      ],      
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
