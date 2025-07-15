@@ -1,13 +1,36 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
 import { Ionicons } from "@expo/vector-icons";
+import { View, Text } from "react-native";
+import {
+  DrawerContentComponentProps,
+  DrawerContentScrollView,
+  DrawerItemList,
+} from "@react-navigation/drawer";
+import {
+  drawerScreenMenuItems,
+  ICON_COLOR,
+  ICON_SIZE,
+} from "@/helpers/Constants";
 
-const ICON_SIZE = 30; // Default icon size
-const ICON_COLOR = "dodgerblue"; // Default icon color
+function DrawerHeader(props: DrawerContentComponentProps) {
+  return (
+    <DrawerContentScrollView {...props}>
+      <View className="flex-col items-center justify-center p-4  mb-4 border-b border-gray-200">
+        <Text className="text-2xl font-bold">OSakhi</Text>
+        <Text className="text-md text-orange-400 font-poppins-semibold">
+          {require("dayjs")().format("dddd, D MMMM, YYYY")}
+        </Text>
+      </View>
+      <DrawerItemList {...props} />
+    </DrawerContentScrollView>
+  );
+}
 export default function Layout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer
+        drawerContent={(props) => <DrawerHeader {...props} />}
         screenOptions={{
           drawerLabelStyle: {
             fontSize: 15,
@@ -15,103 +38,23 @@ export default function Layout() {
           },
         }}
       >
-        <Drawer.Screen
-          name="index" // This is the name of the page and must match the url from root
-          options={{
-            drawerLabel: "Home",
-            title: "Welcome",
-            drawerIcon: ({ size, color }) => {
-              return (
+        {drawerScreenMenuItems.map((screen) => (
+          <Drawer.Screen
+            key={screen.name}
+            name={screen.name}
+            options={{
+              drawerLabel: screen.label,
+              title: screen.title,
+              drawerIcon: ({ size, color }) => (
                 <Ionicons
-                  name={"home-outline"}
+                  name={screen.icon}
                   size={ICON_SIZE}
                   color={ICON_COLOR}
                 />
-              );
-            },
-          }}
-        />
-        <Drawer.Screen
-          name="Documents" // This is the name of the page and must match the url from root
-          options={{
-            drawerLabel: "Documents",
-            title: "Documents",
-            drawerIcon: ({ size, color }) => {
-              return (
-                <Ionicons
-                  name={"document-outline"}
-                  size={ICON_SIZE}
-                  color={ICON_COLOR}
-                />
-              );
-            },
-          }}
-        />
-        <Drawer.Screen
-          name="Reminders" // This is the name of the page and must match the url from root
-          options={{
-            drawerLabel: "Reminders",
-            title: "Reminders",
-            drawerIcon: ({ size, color }) => {
-              return (
-                <Ionicons
-                  name={"notifications-outline"}
-                  size={ICON_SIZE}
-                  color={ICON_COLOR}
-                />
-              );
-            },
-          }}
-        />
-        {/* <Drawer.Screen
-          name="Medications" // This is the name of the page and must match the url from root
-          options={{
-            drawerLabel: "Medications",
-            title: "Medications",
-            drawerIcon: ({ size, color }) => {
-              return (
-                <Ionicons
-                  name={"medkit-outline"}
-                  size={20}
-                  color={"dodgerblue"}
-                />
-              );
-            },
-          }}
-        /> */}
-
-        <Drawer.Screen
-          name="ChatPage" // This is the name of the page and must match the url from root
-          options={{
-            drawerLabel: "Chat",
-            title: "Chat",
-            drawerIcon: ({ size, color }) => {
-              return (
-                <Ionicons
-                  name={"chatbubble-outline"}
-                  size={ICON_SIZE}
-                  color={ICON_COLOR}
-                />
-              );
-            },
-          }}
-        />
-        <Drawer.Screen
-          name="Settings" // This is the name of the page and must match the url from root
-          options={{
-            drawerLabel: "Settings",
-            title: "Settings",
-            drawerIcon: ({ size, color }) => {
-              return (
-                <Ionicons
-                  name={"settings-outline"}
-                  size={ICON_SIZE}
-                  color={ICON_COLOR}
-                />
-              );
-            },
-          }}
-        />
+              ),
+            }}
+          />
+        ))}
       </Drawer>
     </GestureHandlerRootView>
   );
