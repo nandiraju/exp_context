@@ -15,6 +15,7 @@ import UIButton from "@/components/lib/UIButton";
 import { Ionicons } from "@expo/vector-icons";
 import LottieView from "lottie-react-native";
 import { BG_COLOR } from "@/helpers/Constants";
+import EmptyState from "../EmptyState";
 
 export default function RemindersList() {
   const [todos, setTodos] = useAtom(itemsListAtom);
@@ -86,27 +87,10 @@ export default function RemindersList() {
           </View>
         )}
         ListEmptyComponent={() => (
-          <View className="justify-center items-center px-4 h-[70vh]">
-            <LottieView
-              autoPlay
-              speed={0.5}
-              style={{
-                width: 200,
-                height: 200,
-                // backgroundColor: "#eee",
-              }}
-              // Find more Lottie files at https://lottiefiles.com/featured
-              source={require("@/assets/lottie/reminders.json")}
-            />
-            {/* <Ionicons
-              name="notifications-outline"
-              size={100}
-              color="dodgerblue"
-            /> */}
-            <Text className="font-poppins text-gray-500 text-lg text-center">
-              No reminders yet. {"\n"}Start creating your reminders!
-            </Text>
-          </View>
+          <EmptyState
+            lottieSource={require("@/assets/lottie/reminders.json")}
+            message={"No reminders yet. \nStart creating your reminders!"}
+          />
         )}
       />
 

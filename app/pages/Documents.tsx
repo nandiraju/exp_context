@@ -12,6 +12,7 @@ import LottieView from "lottie-react-native";
 import UIButton from "@/components/lib/UIButton";
 import dayjs from "@/helpers/Helper";
 import { BG_COLOR } from "@/helpers/Constants";
+import EmptyState from "@/components/EmptyState";
 
 const Documents = () => {
   const [documents, setDocuments] = useAtom(documentsAtom);
@@ -30,22 +31,14 @@ const Documents = () => {
         renderItem={({ item }) => <DocumentCard item={item} />}
         keyExtractor={(item, index) => item?.id?.toString() || index.toString()}
         ListEmptyComponent={() => (
-          <View className="justify-center items-center px-4 h-[70vh]">
-            <LottieView
-              autoPlay
-              style={{
-                width: 300,
-                height: 300,
-                // backgroundColor: "#eee",
-              }}
-              // Find more Lottie files at https://lottiefiles.com/featured
-              source={require("@/assets/lottie/docs.json")}
-            />
-            {/* <Ionicons name="albums-outline" size={100} color="dodgerblue" /> */}
-            <Text className="mt-4 font-poppins text-gray-500 text-lg text-center">
-              No documents found. {"\n"}Start uploading some to start chatting!
-            </Text>
-          </View>
+          <EmptyState
+            lottieSource={require("@/assets/lottie/docs.json")}
+            width={300}
+            height={300}
+            message={
+              "No documents found. \nStart uploading some to start chatting!"
+            }
+          />
         )}
       />
       {/* <UIButton
