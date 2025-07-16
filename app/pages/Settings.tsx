@@ -7,6 +7,7 @@ import { accessTokenAtom, userAtom } from "@/stores/SimpleStorage";
 import { router } from "expo-router";
 import { SvgUri } from "react-native-svg";
 import VSpace from "@/components/VSpace";
+import { BG_COLOR } from "@/helpers/Constants";
 
 const Settings = () => {
   const [user, setUser] = useAtom(userAtom);
@@ -43,36 +44,36 @@ const Settings = () => {
   return (
     <View
       className="flex-1 justify-center items-center bg-gray-50 px-5"
-      style={{ backgroundColor: "#FDF5E6" }}
+      style={{ backgroundColor: BG_COLOR }}
     >
-      <View className="flex-col items-center justify-center bg-white rounded-xl p-5 w-full">
+      <View className="flex-col justify-center items-center bg-white p-5 rounded-xl w-full">
         <SvgUri
           width="60"
           height="60"
           uri="https://www.svgrepo.com/show/526588/logout-3.svg"
         />
-        <Text className="text-center text-gray-400 my-5 font-poppins">
+        <Text className="my-5 font-poppins text-gray-400 text-center">
           Logout from the app
         </Text>
         <UIButton
-          className="bg-blue-500 p-4 rounded-md w-full mx-auto justify-center items-center shadow-md"
+          className="justify-center items-center bg-blue-500 shadow-md mx-auto p-4 rounded-md w-full"
           title="Sign Out"
           onPress={() => handleSignOut()}
         />
       </View>
       <VSpace gap={56} />
-      <View className="flex-col items-center justify-center bg-white rounded-xl p-5 w-full mx-5">
+      <View className="flex-col justify-center items-center bg-white mx-5 p-5 rounded-xl w-full">
         <SvgUri
           width="60"
           height="60"
           uri="https://www.svgrepo.com/show/526508/clipboard-remove.svg"
         />
-        <Text className="text-center text-gray-400 my-5 font-poppins">
+        <Text className="my-5 font-poppins text-gray-400 text-center">
           Deleting your account will remove all your data. You will need to
           re-register again
         </Text>
         <UIButton
-          className="bg-red-500 p-4 rounded-md w-full mx-auto justify-center items-center shadow-md"
+          className="justify-center items-center bg-red-500 shadow-md mx-auto p-4 rounded-md w-full"
           title="Delete Account"
           onPress={() => handleDeleteAccount()}
         />

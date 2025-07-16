@@ -11,6 +11,7 @@ import { SvgUri } from "react-native-svg";
 import LottieView from "lottie-react-native";
 import UIButton from "@/components/lib/UIButton";
 import dayjs from "@/helpers/Helper";
+import { BG_COLOR } from "@/helpers/Constants";
 
 const Documents = () => {
   const [documents, setDocuments] = useAtom(documentsAtom);
@@ -22,14 +23,14 @@ const Documents = () => {
   }, [documents]);
 
   return (
-    <View className="flex-1 pb-10" style={{ backgroundColor: "#FDF5E6" }}>
+    <View className="flex-1 pb-10" style={{ backgroundColor: BG_COLOR }}>
       <FlatList
-        className="pt-4 px-4"
+        className="px-4 pt-4"
         data={documents || []}
         renderItem={({ item }) => <DocumentCard item={item} />}
         keyExtractor={(item, index) => item?.id?.toString() || index.toString()}
         ListEmptyComponent={() => (
-          <View className="h-[70vh] items-center justify-center px-4">
+          <View className="justify-center items-center px-4 h-[70vh]">
             <LottieView
               autoPlay
               style={{
@@ -41,7 +42,7 @@ const Documents = () => {
               source={require("@/assets/lottie/docs.json")}
             />
             {/* <Ionicons name="albums-outline" size={100} color="dodgerblue" /> */}
-            <Text className="text-gray-500 mt-4 text-lg  text-center font-poppins">
+            <Text className="mt-4 font-poppins text-gray-500 text-lg text-center">
               No documents found. {"\n"}Start uploading some to start chatting!
             </Text>
           </View>
@@ -92,7 +93,7 @@ export const DocumentCard = ({ item }: { item: any }) => {
         uri="https://www.svgrepo.com/show/373961/pdf2.svg"
       />
 
-      <View className="pl-4 flex-1">
+      <View className="flex-1 pl-4">
         <Pressable onPress={() => chatWithDocument(item.id)}>
           <Text className="font-semibold">
             {item?.name || JSON.stringify(item)}

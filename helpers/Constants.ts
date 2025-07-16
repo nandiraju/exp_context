@@ -1,5 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 
+export const BG_COLOR = "#f5f5f5";
+
 export const ICON_SIZE = 25; // Default icon size
 export const ICON_COLOR = "#555"; // Default icon color
 type IoniconName = keyof typeof Ionicons.glyphMap;

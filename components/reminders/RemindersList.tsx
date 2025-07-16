@@ -14,6 +14,7 @@ import ReminderForm from "./ReminderForm";
 import UIButton from "@/components/lib/UIButton";
 import { Ionicons } from "@expo/vector-icons";
 import LottieView from "lottie-react-native";
+import { BG_COLOR } from "@/helpers/Constants";
 
 export default function RemindersList() {
   const [todos, setTodos] = useAtom(itemsListAtom);
@@ -66,15 +67,15 @@ export default function RemindersList() {
         data={todos}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View className="flex-column bg-white rounded-lg p-4 mb-3 shadow-sm overflow-hidden">
-            <View className="absolute top-[-100] right-[-125] w-64 h-64 bg-blue-500/5 rounded-full" />
-            <View className="flex-1 flex-column rounded-md p-4">
-              <Text className="font-semibold font-poppins-semibold">
+          <View className="flex-column bg-white shadow-sm mb-3 p-4 rounded-lg overflow-hidden">
+            <View className="top-[-100] right-[-125] absolute bg-blue-500/5 rounded-full w-64 h-64" />
+            <View className="flex-column flex-1 p-4 rounded-md">
+              <Text className="font-poppins-semibold font-semibold">
                 {item.title}
               </Text>
-              <Text className="text-gray-600 mt-2">{item.description}</Text>
+              <Text className="mt-2 text-gray-600">{item.description}</Text>
             </View>
-            <View className="flex-row items-center pt-2 mt-4 justify-between border-t-[0.3px] border-gray-300">
+            <View className="flex-row justify-between items-center mt-4 pt-2 border-gray-300 border-t-[0.3px]">
               <TouchableOpacity onPress={() => startEdit(item.id)}>
                 <Ionicons name="create-outline" size={20} color="blue" />
               </TouchableOpacity>
@@ -85,7 +86,7 @@ export default function RemindersList() {
           </View>
         )}
         ListEmptyComponent={() => (
-          <View className="h-[70vh] items-center justify-center px-4">
+          <View className="justify-center items-center px-4 h-[70vh]">
             <LottieView
               autoPlay
               speed={0.5}
@@ -102,7 +103,7 @@ export default function RemindersList() {
               size={100}
               color="dodgerblue"
             /> */}
-            <Text className="text-gray-500 text-lg  text-center font-poppins">
+            <Text className="font-poppins text-gray-500 text-lg text-center">
               No reminders yet. {"\n"}Start creating your reminders!
             </Text>
           </View>
@@ -145,5 +146,5 @@ export default function RemindersList() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 24, backgroundColor: "#FDF5E6" },
+  container: { flex: 1, padding: 24, backgroundColor: BG_COLOR },
 });

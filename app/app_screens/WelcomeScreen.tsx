@@ -18,6 +18,7 @@ import { router } from "expo-router";
 import VSpace from "@/components/VSpace";
 import { documentsAtom } from "@/stores/SimpleStorage";
 import { useAtom } from "jotai";
+import { BG_COLOR } from "@/helpers/Constants";
 
 export default function WelcomeScreen() {
   const [documents] = useAtom(documentsAtom);
@@ -43,9 +44,9 @@ export default function WelcomeScreen() {
       ListHeaderComponent={
         <View
           className="flex-1 bg-snow-50"
-          style={{ backgroundColor: "#FDF5E6" }}
+          style={{ backgroundColor: BG_COLOR }}
         >
-          <View className="h-[20px] w-full" />
+          <View className="w-full h-[20px]" />
           <HeadingDivider
             iconName="albums-outline"
             title="Interact with OSakhi"

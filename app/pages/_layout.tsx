@@ -12,13 +12,36 @@ import {
   ICON_COLOR,
   ICON_SIZE,
 } from "@/helpers/Constants";
+import { useAtom } from "jotai";
+import { userAtom } from "@/stores/SimpleStorage";
 
 function DrawerHeader(props: DrawerContentComponentProps) {
+  const [user] = useAtom(userAtom);
+
+  const getUserInitials = (user: any): any => {
+    if (!user || !user.firstName || !user.lastName) return "";
+    const firstInitial = user.firstName.charAt(0).toUpperCase();
+    const lastInitial = user.lastName.charAt(0).toUpperCase();
+    const userName = user.firstName + " " + user.lastName;
+
+    return {
+      initials: `${firstInitial}${lastInitial}`,
+      fullName: userName,
+    };
+  };
+
   return (
     <DrawerContentScrollView {...props}>
-      <View className="flex-col items-center justify-center p-4  mb-4 border-b border-gray-200">
-        <Text className="text-2xl font-bold">OSakhi</Text>
-        <Text className="text-md text-orange-400 font-poppins-semibold">
+      <View className="flex-col justify-center items-center mb-4 p-4 border-gray-200 border-b">
+        <View className="flex justify-center items-center bg-gray-200 mb-2 rounded-full size-24">
+          <Text className="font-bold text-gray-700 text-2xl text-center">
+            {getUserInitials(user).initials}
+          </Text>
+        </View>
+        <Text className="font-poppins-semibold text-gray-700 text-lg">
+          {getUserInitials(user).fullName}
+        </Text>
+        <Text className="font-poppins-semibold text-md text-orange-400">
           {require("dayjs")().format("dddd, D MMMM, YYYY")}
         </Text>
       </View>
